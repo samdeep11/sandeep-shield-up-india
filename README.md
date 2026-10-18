@@ -10,6 +10,6 @@ Genesis: Oct 17 2026
 LIVE MODE ON
 
 Built for India - UPI + Blockchain + Social Fraud Protection
-© 2026 Sandeep - Original
+© 2026 Sandeep Kumar - Original
 
 Vercel Live: https://sandeep-shield-india.netlify.app/
