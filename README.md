@@ -9,4 +9,4 @@ LIVE MODE ON
 Built for India - UPI + Blockchain + Social Fraud Protection
 © 2026 Sandeep - Original
 
-Vercel Live: https://sandeep-shield-up-india.vercel.app
+Vercel Live: https://sandeep-shield-india.netlify.app/
