@@ -1,3 +1,6 @@
+### 🔒 COPYRIGHT - All Rights Reserved - Sandeep, India
+> Copying without permission is prohibited.
+
 # SANDEEP SHIELD - UP, INDIA
 India's First Real-Time Triple Fraud Shield
 
