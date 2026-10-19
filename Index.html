@@ -3,16 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SANDEEP SHIELD UP INDIA REALTIME FINAL</title>
+<title>SANDEEP SHIELD - India's First Real-Time Triple Fraud Shield | Chain ID 98765</title>
+<meta name="description" content="Sandeep Shield UP India - Real-Time UPI, Blockchain, Social Fraud Detection Chain. Chain ID 98765. Live Blocks with Tx Hash proof.">
 <style>
-*{box-sizing:border-box}body{margin:0;background:#0a1931;color:#fff;font-family:system-ui;padding:10px}
+*{box-sizing:border-box}body{margin:0;background:#0a1931;color:#fff;font-family:system-ui;padding:10px;line-height:1.6}
 .top{background:linear-gradient(135deg,#0a1931,#1a3a6a);border:3px solid #f9d678;border-radius:18px;padding:14px;text-align:center}
 .logo{width:110px;height:110px;border-radius:16px;border:3px solid #f9d678}
 .title{font-size:28px;font-weight:900}.g{color:#f9d678}
 .tag{color:#f9d678;font-weight:900;font-size:10px;letter-spacing:2px}
 .sub{font-size:10px;color:#94a3b8;margin-top:6px;line-height:1.4}
-.card{background:#102542;border:1px solid #1e3a5f;padding:10px;border-radius:12px;margin:8px 0}
+.card{background:#102542;border:1px solid #1e3a5f;padding:12px;border-radius:12px;margin:10px 0}
 .btn{width:100%;padding:11px;border:none;border-radius:10px;font-weight:900;margin-top:6px;cursor:pointer}
+.btn-nav{padding:10px;border:none;border-radius:10px;font-weight:900;cursor:pointer;margin:0;font-size:12px}
 input{width:100%;padding:11px;border-radius:10px;margin-top:6px;background:#020617;color:#fff;border:1px solid #334155}
 .badge{font-size:9px;padding:3px 7px;border-radius:10px;font-weight:900}
 .fraud{background:#ef4444} .safe{background:#22c55e;color:#000} .crypto{background:#a855f7} .social{background:#ec4899} .live{background:#f9d678;color:#000}
@@ -25,17 +27,66 @@ input{width:100%;padding:11px;border-radius:10px;margin-top:6px;background:#0206
 <div class="tag">INDIA'S FIRST - REAL-TIME TRIPLE FRAUD SHIELD</div>
 <div class="sub">Founder: Sandeep | Chain ID 98765 | UP, INDIA | LIVE MODE ON<br>Wallet: <span id="wAddr">Not Connected</span> | Genesis Oct 17 2026</div>
 </div>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:5px">
-<div class="card"><div id="upiTx" style="color:#22c55e;font-weight:900">0</div><small>UPI LIVE</small></div>
-<div class="card"><div id="cryptoTx" style="color:#a855f7;font-weight:900">0</div><small>CHAINS LIVE</small></div>
-<div class="card"><div id="socialTx" style="color:#ec4899;font-weight:900">0</div><small>SOCIAL LIVE</small></div>
-<div class="card" style="border:1px solid #f9d678"><div id="blocked" style="color:#ef4444;font-weight:900">0</div><small>BLOCKED</small></div>
+
+<!-- NAV 6 BUTTON ADDED -->
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin:10px 0">
+<button class="btn-nav" style="background:#22c55e;color:#000">🏠 HOME</button>
+<button class="btn-nav" style="background:#102542;color:#f9d678;border:1px solid #f9d678" onclick="location.href='data.html'">📊 DATA</button>
+<button class="btn-nav" style="background:#102542;color:#22c55e;border:1px solid #22c55e" onclick="location.href='explorer.html'">⛓️ CHAIN</button>
+<button class="btn-nav" style="background:#102542;color:#ef4444;border:1px solid #ef4444" onclick="location.href='report.html'">🚨 REPORT</button>
+<button class="btn-nav" style="background:#102542;color:#fff;border:1px solid #334155" onclick="location.href='about.html'">👤 ABOUT</button>
+<button class="btn-nav" style="background:#102542;color:#fff;border:1px solid #334155" onclick="location.href='privacy.html'">🔒 PRIVACY</button>
 </div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:5px">
+<div class="card" style="margin:0;text-align:center"><div id="upiTx" style="color:#22c55e;font-weight:900">0</div><small>UPI LIVE</small></div>
+<div class="card" style="margin:0;text-align:center"><div id="cryptoTx" style="color:#a855f7;font-weight:900">0</div><small>CHAINS LIVE</small></div>
+<div class="card" style="margin:0;text-align:center"><div id="socialTx" style="color:#ec4899;font-weight:900">0</div><small>SOCIAL LIVE</small></div>
+<div class="card" style="margin:0;text-align:center;border:1px solid #f9d678"><div id="blocked" style="color:#ef4444;font-weight:900">0</div><small>BLOCKED</small></div>
+</div>
+
 <button class="btn" style="background:#f9d678;color:#000" onclick="connectWallet()">🔗 Connect Wallet ID</button>
+
 <div class="card" style="border:2px solid #22c55e"><b style="color:#22c55e">🛡️ SCANNER 1: UPI - REAL TIME</b><input id="upiInp" placeholder="UPI: rbi-official@okaxis"><button class="btn" style="background:#22c55e;color:#000" onclick="scanUPI()">🔴 LIVE UPI SCAN</button><div id="upiOut" style="margin-top:6px"></div></div>
 <div class="card" style="border:2px solid #a855f7"><b style="color:#a855f7">🌐 SCANNER 2: BLOCKCHAIN - REAL TIME</b><input id="cryptoInp" placeholder="0x... / bc1... / T..."><button class="btn" style="background:#a855f7;color:#fff" onclick="scanCrypto()">🔴 LIVE CHAIN SCAN</button><div id="cryptoOut" style="margin-top:6px"></div></div>
 <div class="card" style="border:2px solid #ec4899"><b style="color:#ec4899">📱 SCANNER 3: SOCIAL - REAL TIME</b><input id="socialInp" placeholder="t.me/fake-elon / @elon-giveaway"><button class="btn" style="background:linear-gradient(90deg,#ec4899,#f59e0b);color:#000" onclick="scanSocial()">🔴 LIVE SOCIAL SCAN</button><div id="socialOut" style="margin-top:6px"></div></div>
+
 <div class="card" style="border:3px solid #f9d678"><b style="color:#f9d678">⛓️ PUBLIC LEDGER - UP, INDIA - REAL TIME</b><div id="genesisClear" style="background:linear-gradient(135deg,#1a1500,#2a0a4a);border:2px solid #f9d678;border-radius:12px;padding:12px;margin:10px 0;font-size:11px;line-height:1.6;word-break:break-word"></div><div id="ledger" style="font-size:10px;max-height:600px;overflow:auto"></div></div>
+
+<!-- NAYA SEO CONTENT - GOOGLE KE LIYE -->
+<div class="card" style="border:1px solid #22c55e">
+<b style="color:#22c55e;font-size:16px">🛡️ What is Sandeep Shield? UP India Fraud Protection</b><br><br>
+<small style="color:#cbd5e1">
+Sandeep Shield is India's first <b>Real-Time Triple Fraud Shield</b> built in Baghpat, UP with Chain ID 98765. Started Oct 17 2026 as Genesis Block: <b>HUB-GENESIS-SANDEEP-SHIELD-98765-UP-INDIA-REALTIME</b>.<br><br>
+<b style="color:#f9d678">Why Triple?</b> We protect 3 ways: 1) UPI Fraud (rbi-official, pnb-kyc misuse), 2) Blockchain Scam (fake airdrop, private key phishing), 3) Social Scam (Telegram Elon giveaway). Every scan creates immutable BLOCK with Tx Hash (TX-UPI-LIVE-GD4-98765-UP) — perfect proof for police complaint 1930.<br><br>
+<b style="color:#a855f7">Live Mode ON:</b> Wallet Public-Test-Wallet, all data stored in localStorage key shield_final_up_realtime. No server, no tracking — 100% privacy.
+</small>
+</div>
+
+<div class="card">
+<b style="color:#f9d678">⚡ How It Works? 3 Steps Live</b><br>
+<small style="color:#cbd5e1">
+<b>1. SCAN:</b> Enter UPI ID / Crypto Address / Telegram Link<br>
+<b>2. BLOCK:</b> System creates Tx Hash + checks pattern + adds to PUBLIC LEDGER<br>
+<b>3. PROOF:</b> View in DATA & CHAIN EXPLORER → Share Tx Hash with Cyber Cell<br><br>
+<span style="background:#22c55e20;padding:4px 8px;border-radius:6px;color:#22c55e">✅ SAFE 99% = Green | ⚠️ SUSPICIOUS = Yellow | 🚨 FRAUD 95% = Red</span>
+</small>
+</div>
+
+<div class="card">
+<b style="color:#22c55e">❓ FAQ - Trusted by UP, India</b><br>
+<small style="color:#cbd5e1">
+<b>Q: Is my data safe?</b> A: Yes — Only in your phone, no server. Clear browser = data deleted.<br>
+<b>Q: Can I report fraud?</b> A: Yes REPORT page → Becomes live block in your chain.<br>
+<b>Q: Govt site?</b> A: No, private initiative from Baghpat UP to help Indians. Official complaint: 1930 or cybercrime.gov.in<br>
+<b>Q: What is Chain ID 98765?</b> A: Unique Genesis ID of Sandeep Shield — Like Bitcoin Genesis Block.
+</small>
+</div>
+
+<div class="card" style="text-align:center;border:1px dashed #334155">
+<small style="color:#94a3b8">© 2026 Sandeep Shield - Baghpat, UP, India - 250609<br>Founder: Sandeep | Email: sandeepshield.up@gmail.com<br><span style="color:#22c55e">Chain ID 98765 - Real-Time | No Tracking | No Server | LIVE MODE ON</span></small>
+</div>
+
 <script>
 let chain=JSON.parse(localStorage.getItem('shield_final_up_realtime')||'[]');let walletId="Public-Test-Wallet";
 if(chain.length==0){chain.push({type:"HUB_GENESIS",msg:"SANDEEP SHIELD - India's First Real-Time Triple Fraud Shield - Created by SANDEEP - UP, INDIA - Real-Time Mode ON - Genesis Oct 17 2026 - Original & First - Live Scanning Enabled",time:Date.now(),hash:"HUB-GENESIS-SANDEEP-SHIELD-98765-UP-INDIA-REALTIME",walletId:"OWNER-SANDEEP-UP-INDIA",qkey:"QKYB-UP-INDIA-LIVE",cat:"genesis",chainType:"GENESIS REAL-TIME"});localStorage.setItem('shield_final_up_realtime',JSON.stringify(chain));}
