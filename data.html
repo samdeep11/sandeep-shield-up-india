@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DATA TABLE - SANDEEP SHIELD</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0a1931;color:#fff;font-family:system-ui;padding:10px}
+.top{background:linear-gradient(135deg,#0a1931,#1a3a6a);border:3px solid #f9d678;border-radius:14px;padding:14px;text-align:center}
+.card{background:#102542;border:2px solid #1e3a5f;padding:10px;border-radius:12px;margin:10px 0}
+.btn{width:100%;padding:11px;border:none;border-radius:10px;font-weight:900;margin-top:8px;cursor:pointer}
+table{width:100%;border-collapse:collapse;font-size:11px}
+th{position:sticky;top:0;background:#0f172a;color:#f9d678;padding:10px;border:1px solid #334155}
+td{padding:9px;border:1px solid #1e293b;vertical-align:top}
+</style>
+</head>
+<body>
+
+<div class="top">
+<div style="font-size:24px;font-weight:900">📋 DATA <span style="color:#f9d678">TABLE</span></div>
+<div style="font-size:10px;color:#f9d678;font-weight:900">UP INDIA - PUBLIC LEDGER - CHAIN 98765</div>
+<button class="btn" style="background:#f9d678;color:#000;margin-top:10px" onclick="location.href='index.html'">← HOME PAGE PE JAO</button>
+</div>
+
+<div class="card" style="border:3px solid #f9d678">
+<div style="display:flex;justify-content:space-between;font-size:12px;color:#94a3b8">
+<span>Total Check: <b id="total" style="color:#fff">0</b></span>
+<span>Dhokha: <b id="fraudCount" style="color:#ef4444">0</b></span>
+<span>Safe: <b id="safeCount" style="color:#22c55e">0</b></span>
+</div>
+
+<div style="overflow:auto;max-height:75vh;margin-top:10px;border:1px solid #334155;border-radius:10px">
+<table>
+<thead>
+<tr>
+<th>TYPE</th>
+<th>DETAILS</th>
+<th>🤖 AI KYA BOLA?</th>
+<th>⏰ TIME</th>
+<th>💰 RISK / AMOUNT</th>
+<th>PROOF</th>
+</tr>
+</thead>
+<tbody id="body"></tbody>
+</table>
+</div>
+
+<button class="btn" style="background:#ef4444;color:#fff" onclick="clearData()">🗑️ Saara Data Delete Karo</button>
+</div>
+
+<script>
+function load(){
+ let chain = JSON.parse(localStorage.getItem('shield_chain')||localStorage.getItem('sandeep_chain')||'[]');
+ document.getElementById('total').innerText = chain.length;
+ document.getElementById('fraudCount').innerText = chain.filter(c=>c.fraud).length;
+ document.getElementById('safeCount').innerText = chain.filter(c=>!c.fraud).length;
+
+ let html="";
+ chain.slice().reverse().forEach(b=>{
+  let tCol = b.cat=='crypto' ? '#a855f7' : (b.cat=='social' ? '#ec4899' : '#22c55e');
+  let ai = b.ai || {label: b.fraud?'🚨 DHOKHA HAI':'✅ SURAKSHIT', color: b.fraud?'#ef4444':'#22c55e', reason: b.fraud?'AI ko fraud laga':'AI ko safe laga'};
+  // fallback for old format
+  if(b.aiData && !b.ai){ ai = {label: b.fraud?'🚨 DHOKHA':'✅ SAFE', color: b.fraud?'#ef4444':'#22c55e', reason: b.aiData} }
+  if(ai.l){ ai = {label: ai.l, color: ai.c||'#fff', reason: ai.r||''} }
+
+  let time = b.time ? new Date(b.time).toLocaleString('hi-IN',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}) : 'Abhi';
+  let riskText = b.fraud ? '🔴 95% KHATRA<br>PAISE MAT BHEJO' : '🟢 5% SAFE<br>Bharosa Kar Sakte Ho';
+  let amount = b.amount ? `₹${b.amount}` : 'Check Only';
+
+  html+=`<tr>
+  <td><span style="background:${tCol};color:#fff;padding:3px 6px;border-radius:5px;font-weight:900;font-size:10px">${(b.cat||'UPI').toUpperCase()}</span><br>${b.fraud?'<span style="background:#ef4444;padding:2px 4px;border-radius:4px;font-size:9px">FRAUD</span>':'<span style="background:#22c55e;padding:2px 4px;border-radius:4px;font-size:9px">SAFE</span>'}</td>
+  <td style="word-break:break-all"><b>${b.msg||b.message||''}</b></td>
+  <td style="border-left:4px solid ${ai.color};background:${ai.color}20"><b style="color:${ai.color}">${ai.label}</b><br><small style="color:#cbd5e1;line-height:1.3">${ai.reason}</small></td>
+  <td><small>${time}</small></td>
+  <td><small><b>${riskText}</b><br><span style="color:#f9d678">${amount}</span></small></td>
+  <td><small style="word-break:break-all">${b.hash||''}</small></td>
+  </tr>`;
+ });
+
+ document.getElementById('body').innerHTML = html || `<tr><td colspan="6" style="padding:30px;text-align:center;color:#94a3b8">Koi data nahi hai 😔<br><br>HOME PAGE pe jake UPI / Crypto / Social check karo,<br>fir ye TABLE automatic bhar jayega!</td></tr>`;
+}
+
+function clearData(){
+ if(confirm("Saara data delete karna hai pakka?")){
+  localStorage.removeItem('shield_chain');
+  localStorage.removeItem('sandeep_chain');
+  load();
+ }
+}
+
+load();
+</script>
+</body>
+</html>
