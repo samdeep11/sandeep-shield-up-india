@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SANDEEP SHIELD - India's First Real-Time Triple Fraud Shield | Chain ID 98765</title>
+<title>SANDEEP SHIELD - India's Real-Time Fraud Shield | Chain ID 98765</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#0a1931;color:#fff;font-family:system-ui;padding:10px;line-height:1.6}
+*{box-sizing:border-box}
+body{margin:0;background:#0a1931;color:#fff;font-family:system-ui;padding:10px;line-height:1.6}
 .top{background:linear-gradient(135deg,#0a1931,#1a3a6a);border:3px solid #f9d678;border-radius:18px;padding:14px;text-align:center}
 .logo{width:110px;height:110px;border-radius:16px;border:3px solid #f9d678}
 .title{font-size:28px;font-weight:900}.g{color:#f9d678}
@@ -16,160 +18,459 @@
 .btn-nav{padding:10px;border:none;border-radius:10px;font-weight:900;cursor:pointer;margin:0;font-size:12px}
 input,select{width:100%;padding:11px;border-radius:10px;margin-top:6px;background:#020617;color:#fff;border:1px solid #334155}
 .badge{font-size:9px;padding:3px 7px;border-radius:10px;font-weight:900}
-.fraud{background:#ef4444} .safe{background:#22c55e;color:#000} .crypto{background:#a855f7} .social{background:#ec4899} .live{background:#f9d678;color:#000} .btc{background:#f7931a;color:#000} .tron{background:#ff060a} .bsc{background:#f0b90b;color:#000} .poly{background:#8247e5}
+.fraud{background:#ef4444}.safe{background:#22c55e;color:#000}
+.crypto{background:#a855f7}.social{background:#ec4899}
+.live{background:#f9d678;color:#000}.btc{background:#f7931a;color:#000}
+.tron{background:#ff060a}.bsc{background:#f0b90b;color:#000}.poly{background:#8247e5}
+.qr{background:#f59e0b;color:#000}
+a{color:#f9d678}
 </style>
 </head>
 <body>
+
 <div class="top">
-<img src="logo.png" class="logo">
-<div class="title">SANDEEP <span class="g">SHIELD</span></div>
-<div class="tag">INDIA'S FIRST - REAL-TIME TRIPLE FRAUD SHIELD</div>
-<div class="sub">Founder: Sandeep | Chain ID 98765 | UP, INDIA | LIVE MODE ON<br>Wallet: <span id="wAddr">Not Connected</span> | Genesis Oct 17 2026</div>
+  <img src="logo.png" class="logo">
+  <div class="title">SANDEEP <span class="g">SHIELD</span></div>
+  <div class="tag">INDIA'S REAL-TIME FRAUD SHIELD</div>
+  <div class="sub">
+    Founder: Sandeep | Chain ID 98765 | UP, INDIA | LIVE MODE ON<br>
+    Wallet: <span id="wAddr">Not Connected</span> | Genesis Oct 17 2026
+  </div>
 </div>
 
 <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin:10px 0">
-<button class="btn-nav" style="background:#22c55e;color:#000">🏠 HOME</button>
-<button class="btn-nav" style="background:#102542;color:#f9d678;border:1px solid #f9d678" onclick="location.href='data.html'">📊 DATA</button>
-<button class="btn-nav" style="background:#102542;color:#22c55e;border:1px solid #22c55e" onclick="location.href='explorer.html'">⛓️ CHAIN</button>
-<button class="btn-nav" style="background:#102542;color:#ef4444;border:1px solid #ef4444" onclick="location.href='report.html'">🚨 REPORT</button>
-<button class="btn-nav" style="background:#102542;color:#fff;border:1px solid #334155" onclick="location.href='about.html'">👤 ABOUT</button>
-<button class="btn-nav" style="background:#102542;color:#fff;border:1px solid #334155" onclick="location.href='privacy.html'">🔒 PRIVACY</button>
+  <button class="btn-nav" style="background:#22c55e;color:#000">🏠 HOME</button>
+  <button class="btn-nav" style="background:#102542;color:#f9d678;border:1px solid #f9d678" onclick="location.href='data.html'">📊 DATA</button>
+  <button class="btn-nav" style="background:#102542;color:#22c55e;border:1px solid #22c55e" onclick="location.href='explorer.html'">⛓️ CHAIN</button>
+  <button class="btn-nav" style="background:#102542;color:#ef4444;border:1px solid #ef4444" onclick="location.href='report.html'">🚨 REPORT</button>
+  <button class="btn-nav" style="background:#102542;color:#fff;border:1px solid #334155" onclick="location.href='about.html'">👤 ABOUT</button>
+  <button class="btn-nav" style="background:#102542;color:#fff;border:1px solid #334155" onclick="location.href='privacy.html'">🔒 PRIVACY</button>
 </div>
 
 <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:5px">
-<div class="card" style="margin:0;text-align:center"><div id="upiTx" style="color:#22c55e;font-weight:900">0</div><small>UPI LIVE</small></div>
-<div class="card" style="margin:0;text-align:center"><div id="cryptoTx" style="color:#a855f7;font-weight:900">0</div><small>CHAINS LIVE</small></div>
-<div class="card" style="margin:0;text-align:center"><div id="socialTx" style="color:#ec4899;font-weight:900">0</div><small>SOCIAL LIVE</small></div>
-<div class="card" style="margin:0;text-align:center;border:1px solid #f9d678"><div id="blocked" style="color:#ef4444;font-weight:900">0</div><small>BLOCKED</small></div>
+  <div class="card" style="margin:0;text-align:center"><div id="upiTx" style="color:#22c55e;font-weight:900">0</div><small>UPI SCANS</small></div>
+  <div class="card" style="margin:0;text-align:center"><div id="cryptoTx" style="color:#a855f7;font-weight:900">0</div><small>CRYPTO SCANS</small></div>
+  <div class="card" style="margin:0;text-align:center"><div id="socialTx" style="color:#ec4899;font-weight:900">0</div><small>SOCIAL SCANS</small></div>
+  <div class="card" style="margin:0;text-align:center;border:1px solid #f9d678"><div id="blocked" style="color:#ef4444;font-weight:900">0</div><small>RISK FOUND</small></div>
 </div>
 
 <button class="btn" style="background:#f9d678;color:#000" onclick="connectWallet()">🔗 Connect Wallet ID</button>
 
-<div class="card" style="border:2px solid #22c55e"><b style="color:#22c55e">🛡️ SCANNER 1: UPI - REAL TIME</b><input id="upiInp" placeholder="UPI: rbi-official@okaxis"><button class="btn" style="background:#22c55e;color:#000" onclick="scanUPI()">🔴 LIVE UPI SCAN</button><div id="upiOut" style="margin-top:6px"></div></div>
+<div class="card" style="border:2px solid #22c55e">
+  <b style="color:#22c55e">🛡️ SCANNER 1: UPI RISK CHECK</b>
+  <input id="upiInp" placeholder="UPI ID: name@bank">
+  <button class="btn" style="background:#22c55e;color:#000" onclick="scanUPI()">🔴 SCAN UPI ID</button>
+  <div id="upiOut" style="margin-top:6px"></div>
+</div>
 
-<div class="card" style="border:2px solid #a855f7"><b style="color:#a855f7">🌐 SCANNER 2: 5 BLOCKCHAIN - REAL TIME</b>
-<select id="chainSel">
-<option value="ETH">♦️ ETH - Ethereum</option>
-<option value="BSC">🟡 BSC - BNB Chain</option>
-<option value="POLY">💜 POLY - Polygon</option>
-<option value="BTC">₿ BTC - Bitcoin</option>
-<option value="TRON">🔴 TRON - TRX</option>
-</select>
-<input id="cryptoInp" placeholder="0x... / bc1... / T..."><button class="btn" style="background:#a855f7;color:#fff" onclick="scanCrypto()">🔴 LIVE CHAIN SCAN</button><div id="cryptoOut" style="margin-top:6px"></div></div>
+<div class="card" style="border:2px solid #a855f7">
+  <b style="color:#a855f7">🌐 SCANNER 2: CRYPTO WALLET CHECK</b>
+  <select id="chainSel">
+    <option value="ETH">♦️ ETH - Ethereum</option>
+    <option value="BSC">🟡 BSC - BNB Chain</option>
+    <option value="POLY">💜 POLY - Polygon</option>
+    <option value="BTC">₿ BTC - Bitcoin</option>
+    <option value="TRON">🔴 TRON - TRX</option>
+  </select>
+  <input id="cryptoInp" placeholder="0x... / bc1... / T...">
+  <button class="btn" style="background:#a855f7;color:#fff" onclick="scanCrypto()">🔴 SCAN WALLET</button>
+  <div id="cryptoOut" style="margin-top:6px"></div>
+</div>
 
-<div class="card" style="border:2px solid #ec4899"><b style="color:#ec4899">📱 SCANNER 3: SOCIAL - REAL TIME</b><input id="socialInp" placeholder="t.me/fake-elon / @elon-giveaway"><button class="btn" style="background:linear-gradient(90deg,#ec4899,#f59e0b);color:#000" onclick="scanSocial()">🔴 LIVE SOCIAL SCAN</button><div id="socialOut" style="margin-top:6px"></div></div>
+<div class="card" style="border:2px solid #ec4899">
+  <b style="color:#ec4899">📱 SCANNER 3: SOCIAL / LINK CHECK</b>
+  <input id="socialInp" placeholder="t.me/fake-channel / @fake-handle / https://...">
+  <button class="btn" style="background:linear-gradient(90deg,#ec4899,#f59e0b);color:#000" onclick="scanSocial()">🔴 SCAN SOCIAL / LINK</button>
+  <div id="socialOut" style="margin-top:6px"></div>
+</div>
 
-<div class="card" style="border:3px solid #f9d678"><b style="color:#f9d678">⛓️ PUBLIC LEDGER - UP, INDIA - REAL TIME</b><div id="genesisClear" style="background:linear-gradient(135deg,#1a1500,#2a0a4a);border:2px solid #f9d678;border-radius:12px;padding:12px;margin:10px 0;font-size:11px;line-height:1.6;word-break:break-word"></div><div id="ledger" style="font-size:10px;max-height:600px;overflow:auto"></div></div>
+<div class="card" style="border:2px solid #f59e0b">
+  <b style="color:#f59e0b">📷 SCANNER 4: QR CODE - UPI / CRYPTO / LINK</b>
+  <div id="qrReader" style="margin-top:8px;border-radius:10px;overflow:hidden"></div>
+  <button class="btn qr" onclick="startQR()">📷 START CAMERA SCAN</button>
+  <button class="btn" style="background:#334155;color:#fff" onclick="stopQR()">⛔ STOP CAMERA</button>
+  <input type="file" id="qrFile" accept="image/*" onchange="scanQRImage(this.files[0])">
+  <div id="qrOut" style="margin-top:8px"></div>
+</div>
+
+<div class="card" style="border:3px solid #f9d678">
+  <b style="color:#f9d678">⛓️ LOCAL SCAN LEDGER - UP, INDIA</b>
+  <div id="genesisClear" style="background:linear-gradient(135deg,#1a1500,#2a0a4a);border:2px solid #f9d678;border-radius:12px;padding:12px;margin:10px 0;font-size:11px;line-height:1.6;word-break:break-word"></div>
+  <div id="ledger" style="font-size:10px;max-height:600px;overflow:auto"></div>
+</div>
 
 <div class="card" style="text-align:center;border:1px dashed #334155">
-<small style="color:#94a3b8">© 2026 Sandeep Shield - Baghpat, UP, India - 250609<br>Founder: Sandeep | Chain ID 98765 - Real-Time | 5 CHAIN LIVE | LIVE MODE ON</small>
+  <small style="color:#94a3b8">
+    © 2026 Sandeep Shield - Baghpat, UP, India - 250609<br>
+    Founder: Sandeep | Chain ID 98765<br>
+    Scam intelligence by <a href="https://gacs.app" target="_blank" rel="noopener">GACS</a>
+  </small>
 </div>
 
 <script>
-let chain=JSON.parse(localStorage.getItem('shield_final_up_realtime')||'[]');let walletId="Public-Test-Wallet";
-if(chain.length==0){chain.push({type:"HUB_GENESIS",msg:"SANDEEP SHIELD - India's First Real-Time 5 Chain Shield - Created by SANDEEP - UP, INDIA - Genesis Oct 17 2026 - Chain ID 98765 - ETH,BSC,POLY,BTC,TRON LIVE",time:Date.now(),hash:"HUB-GENESIS-SANDEEP-SHIELD-98765-UP-INDIA-REALTIME",walletId:"OWNER-SANDEEP-UP-INDIA",qkey:"QKYB-UP-INDIA-LIVE",cat:"genesis",chainType:"GENESIS 5-CHAIN"});localStorage.setItem('shield_final_up_realtime',JSON.stringify(chain));}
-function save(){localStorage.setItem('shield_final_up_realtime',JSON.stringify(chain));render();}
-function render(){
- document.getElementById('upiTx').innerText=chain.filter(c=>c.cat=='upi').length;
- document.getElementById('cryptoTx').innerText=chain.filter(c=>c.cat=='crypto').length;
- document.getElementById('socialTx').innerText=chain.filter(c=>c.cat=='social').length;
- document.getElementById('blocked').innerText=chain.filter(c=>c.fraud).length;
- document.getElementById('wAddr').innerText=walletId;
- let g=chain.find(c=>c.type=='HUB_GENESIS');
- if(g){document.getElementById('genesisClear').innerHTML=`<b style="color:#f9d678">⭐ HUB_GENESIS - 5 CHAIN - UP, INDIA ⭐</b><br><b style="color:#fff">${g.msg}</b><br><span style="color:#f9d678">Tx:</span> <b>${g.hash}</b><br>Owner: ${g.walletId} | <b style="color:#22c55e">OWNER: SANDEEP - VERIFIED - 5 CHAIN LIVE</b>`;}
- let h="";chain.slice().reverse().forEach(b=>{
-  if(b.type=='HUB_GENESIS')return;
-  let ct=b.chainType||'';
-  let badgeClass='crypto';
-  if(ct.includes('ETH')) badgeClass='crypto';
-  if(ct.includes('BSC')) badgeClass='bsc';
-  if(ct.includes('POLY')) badgeClass='poly';
-  if(ct.includes('BTC')) badgeClass='btc';
-  if(ct.includes('TRON')) badgeClass='tron';
-  if(b.fraud) badgeClass='fraud';
-  if(b.cat=='upi' && !b.fraud) badgeClass='safe';
-  if(b.cat=='social' && !b.fraud) badgeClass='social';
-  h+=`<div style="border-bottom:1px solid #1e293b;padding:8px 0"><span class="badge live">LIVE</span> <span class="badge ${badgeClass}">${(b.chainType||b.cat).toUpperCase()}</span> <b>${b.msg}</b><br><small>Tx: ${b.hash} | QKey: ${b.qkey}</small></div>`;
- });document.getElementById('ledger').innerHTML=h;
+let chain = JSON.parse(localStorage.getItem('shield_final_up_realtime') || '[]');
+let walletId = "Public-Test-Wallet";
+let qrScanner = null;
+const GACS = "https://gacs.app/api/public";
+
+if (chain.length === 0) {
+  chain.push({
+    type: "HUB_GENESIS",
+    msg: "SANDEEP SHIELD - Real-Time Fraud Shield - Created by SANDEEP - UP, INDIA - Genesis Oct 17 2026 - Chain ID 98765",
+    time: Date.now(),
+    hash: "HUB-GENESIS-SANDEEP-SHIELD-98765-UP-INDIA",
+    walletId: "OWNER-SANDEEP-UP-INDIA",
+    qkey: "QKYB-UP-INDIA-LIVE",
+    cat: "genesis",
+    chainType: "GENESIS",
+    fraud: false
+  });
+  localStorage.setItem('shield_final_up_realtime', JSON.stringify(chain));
 }
-function connectWallet(){walletId="0x"+Math.random().toString(16).slice(2,8)+"...Sim";render();}
-async function scanUPI(){
- let d=document.getElementById('upiInp').value.trim();if(!d)return alert("UPI dalo!");
- document.getElementById('upiOut').innerHTML=`<div style="padding:10px;background:#1e293b;border-radius:10px">⏳ LIVE checking: ${d}...</div>`;
- let fraud=false;let reason="";if(!d.includes('@')){fraud=true;reason="Invalid UPI";}
- if(["rbi","gov","official","refund","kyc","lottery"].some(k=>d.toLowerCase().includes(k))){fraud=true;reason="Gov/Fraud keyword LIVE";}
- await new Promise(r=>setTimeout(r,600));
- let hash="TX-UPI-LIVE-"+Math.random().toString(36).slice(2,5).toUpperCase()+"-98765-UP";
- let qkey="QKYB-LIVE-"+hash;
- chain.push({data:d,msg:`${fraud?'🚨 LIVE FRAUD UPI':'✅ LIVE SAFE UPI'}: ${d} - ${reason||'Verified'}`,time:Date.now(),hash:hash,qkey:qkey,cat:"upi",fraud:fraud,chainType:"UPI-LIVE"});
- save();
- document.getElementById('upiOut').innerHTML=`<div style="padding:10px;border-radius:10px;background:${fraud?'#ef444425':'#22c55e25'};border:1px solid ${fraud?'#ef4444':'#22c55e'}"><b>${fraud?'🚨 FRAUD 95%':'✅ SAFE 99%'}</b><br>${d}<br>Tx: ${hash}<br>QKey: ${qkey}</div>`;
+
+function save() {
+  localStorage.setItem('shield_final_up_realtime', JSON.stringify(chain));
+  render();
 }
-async function scanCrypto(){
- let d=document.getElementById('cryptoInp').value.trim();if(!d)return alert("Address dalo!");
- let t=document.getElementById('chainSel').value;
- document.getElementById('cryptoOut').innerHTML=`<div style="padding:10px;background:#1e293b;border-radius:10px;border:1px solid #a855f7">⏳ <b>LIVE ${t} blockchain:</b> ${d.slice(0,20)}...<br>🌐 ${t}Scan LIVE API...<br>${new Date().toLocaleTimeString()}</div>`;
- let fraud=false;let liveData="";
- try{
-   if(t==='ETH'){
-     let r=await fetch(`https://api.etherscan.io/api?module=account&action=balance&address=${d}&tag=latest`);
-     let j=await r.json();
-     let bal = (j.status==='1' && j.result && !isNaN(j.result)) ? (Number(j.result)/1e18).toFixed(6) : (Math.random()*0.08+0.0012).toFixed(6);
-     liveData=`Balance ${bal} ETH - LIVE REAL from Etherscan`;
-   } else if(t==='BSC'){
-     let r=await fetch(`https://api.bscscan.com/api?module=account&action=balance&address=${d}&tag=latest`);
-     let j=await r.json();
-     let bal = (j.status==='1' && j.result && !isNaN(j.result)) ? (Number(j.result)/1e18).toFixed(6) : (Math.random()*0.6+0.01).toFixed(6);
-     liveData=`Balance ${bal} BNB - LIVE REAL from BscScan`;
-   } else if(t==='POLY'){
-     let r=await fetch(`https://api.polygonscan.com/api?module=account&action=balance&address=${d}&tag=latest`);
-     let j=await r.json();
-     let bal = (j.status==='1' && j.result && !isNaN(j.result)) ? (Number(j.result)/1e18).toFixed(6) : (Math.random()*1.2+0.02).toFixed(6);
-     liveData=`Balance ${bal} MATIC - LIVE REAL from PolygonScan`;
-   } else if(t==='BTC'){
-     try{
-       let r=await fetch(`https://api.blockcypher.com/v1/btc/main/addrs/${d}/balance`);
-       let j=await r.json();
-       let bal = j.balance!=null ? (j.balance/1e8).toFixed(6) : (Math.random()*0.03+0.0002).toFixed(6);
-       liveData=`Balance ${bal} BTC - LIVE REAL from BlockCypher`;
-     }catch(e){
-       let bal=(Math.random()*0.03+0.0002).toFixed(6);
-       liveData=`Balance ${bal} BTC - LIVE REAL (Safe Mode)`;
-     }
-   } else if(t==='TRON'){
-     try{
-       let r=await fetch(`https://api.trongrid.io/v1/accounts/${d}`);
-       let j=await r.json();
-       let bal = j.data && j.data[0] && j.data[0].balance!=null ? (j.data[0].balance/1e6).toFixed(2) : (Math.random()*20+2).toFixed(2);
-       liveData=`Balance ${bal} TRX - LIVE REAL from TronGrid`;
-     }catch(e){
-       let bal=(Math.random()*20+2).toFixed(2);
-       liveData=`Balance ${bal} TRX - LIVE REAL (Safe Mode)`;
-     }
-   }
- }catch(e){
-   let demoBal=(Math.random()*0.05+0.001).toFixed(6);
-   liveData=`Balance ${demoBal} ${t} - LIVE REAL (Verified - Safe Mode)`;
- }
- if(["double","giveaway","elon"].some(k=>d.toLowerCase().includes(k))){fraud=true;liveData+=" | SCAM Keyword";}
- let hash="TX-"+t+"-LIVE-"+Math.random().toString(36).slice(2,5).toUpperCase()+"-98765-UP";
- let qkey="QKYB-LIVE-"+hash;
- chain.push({data:d,msg:`${fraud?'🚨 LIVE SCAM':'✅ LIVE SAFE'} ${t}: ${d.slice(0,30)} | ${liveData}`,time:Date.now(),hash:hash,qkey:qkey,cat:"crypto",fraud:fraud,chainType:t+"-LIVE"});
- save();
- document.getElementById('cryptoOut').innerHTML=`<div style="padding:10px;border-radius:10px;background:${fraud?'#a855f725':'#22c55e25'};border:1px solid ${fraud?'#a855f7':'#22c55e'}"><b>${fraud?'🚨 LIVE SCAM 96%':'✅ LIVE SAFE '+t+' - REAL TIME'}</b><br>${d}<br>${liveData}<br>Tx: ${hash}<br>QKey: ${qkey}</div>`;
+
+function render() {
+  document.getElementById('upiTx').innerText = chain.filter(c => c.cat === 'upi').length;
+  document.getElementById('cryptoTx').innerText = chain.filter(c => c.cat === 'crypto').length;
+  document.getElementById('socialTx').innerText = chain.filter(c => c.cat === 'social').length;
+  document.getElementById('blocked').innerText = chain.filter(c => c.fraud).length;
+  document.getElementById('wAddr').innerText = walletId;
+
+  const g = chain.find(c => c.type === 'HUB_GENESIS');
+  if (g) {
+    document.getElementById('genesisClear').innerHTML =
+      `<b style="color:#f9d678">⭐ HUB_GENESIS - UP, INDIA ⭐</b><br>
+       <b>${g.msg}</b><br>
+       <span style="color:#f9d678">Tx:</span> <b>${g.hash}</b><br>
+       Owner: ${g.walletId}`;
+  }
+
+  let h = "";
+  chain.slice().reverse().forEach(b => {
+    if (b.type === 'HUB_GENESIS') return;
+
+    let badgeClass = 'crypto';
+    if (b.cat === 'upi') badgeClass = b.fraud ? 'fraud' : 'safe';
+    if (b.cat === 'social') badgeClass = b.fraud ? 'fraud' : 'social';
+    if (b.chainType === 'ETH') badgeClass = 'crypto';
+    if (b.chainType === 'BSC') badgeClass = 'bsc';
+    if (b.chainType === 'POLY') badgeClass = 'poly';
+    if (b.chainType === 'BTC') badgeClass = 'btc';
+    if (b.chainType === 'TRON') badgeClass = 'tron';
+    if (b.fraud) badgeClass = 'fraud';
+
+    h += `<div style="border-bottom:1px solid #1e293b;padding:8px 0">
+      <span class="badge live">SCANNED</span>
+      <span class="badge ${badgeClass}">${(b.chainType || b.cat).toUpperCase()}</span>
+      <b>${b.msg}</b><br>
+      <small>Tx: ${b.hash} | QKey: ${b.qkey}</small>
+    </div>`;
+  });
+
+  document.getElementById('ledger').innerHTML = h || "<small>Koi scan history nahi hai.</small>";
 }
-async function scanSocial(){
- let d=document.getElementById('socialInp').value.trim();if(!d)return alert("Social ID dalo!");
- document.getElementById('socialOut').innerHTML=`<div style="padding:10px;background:#1e293b;border-radius:10px">⏳ LIVE social: ${d}...</div>`;
- let low=d.toLowerCase();let tp=low.includes('t.me')?'TELEGRAM':'SOCIAL';
- let fraud=false;if(["giveaway","double","elon","official support"].some(k=>low.includes(k))){fraud=true;}
- let hash="TX-SOCIAL-LIVE-"+tp+"-"+Math.random().toString(36).slice(2,5).toUpperCase()+"-98765-UP";
- let qkey="QKYB-LIVE-"+hash;
- let liveStatus=`${tp} Live - ${fraud?'Fake LIVE':'Real LIVE'}`;
- chain.push({data:d,msg:`${fraud?'🚨 LIVE FAKE':'✅ LIVE REAL'} ${tp}: ${d.slice(0,32)} | ${liveStatus}`,time:Date.now(),hash:hash,qkey:qkey,cat:"social",fraud:fraud,chainType:tp+"-LIVE"});
- save();
- document.getElementById('socialOut').innerHTML=`<div style="padding:10px;border-radius:10px;background:${fraud?'#ec489925':'#22c55e25'}"><b>${fraud?'🚨 LIVE FAKE 97%':'✅ LIVE REAL'}</b><br>${d}<br>Tx: ${hash}<br>QKey: ${qkey}</div>`;
+
+function connectWallet() {
+  walletId = "0x" + Math.random().toString(16).slice(2, 8).toUpperCase() + "...SIM";
+  render();
 }
+
+function shield(msg, fraud, extra = "") {
+  return `<div style="padding:10px;border-radius:10px;background:${fraud ? '#ef444425' : '#22c55e25'};border:1px solid ${fraud ? '#ef4444' : '#22c55e'}">
+    <b>${fraud ? '🚨 HIGH RISK' : '✅ NO KNOWN MATCH'}</b><br>
+    ${msg}<br>${extra}
+    <br><small>Scam intelligence by <a href="https://gacs.app" target="_blank" rel="noopener">GACS</a></small>
+  </div>`;
+}
+
+function addLedger(cat, chainType, data, fraud, detail) {
+  const hash = "TX-" + cat.toUpperCase() + "-" + Math.random().toString(36).slice(2, 7).toUpperCase() + "-98765-UP";
+  chain.push({
+    data,
+    fraud,
+    cat,
+    chainType,
+    msg: `${fraud ? '🚨' : '✅'} ${chainType}: ${data.slice(0, 45)} | ${detail}`,
+    time: Date.now(),
+    hash,
+    qkey: "QKYB-" + hash
+  });
+  save();
+  return hash;
+}
+
+function getHost(url) {
+  try {
+    return new URL(url).hostname;
+  } catch {
+    return url.replace(/^@/, "");
+  }
+}
+
+async function scanUPI() {
+  const d = document.getElementById('upiInp').value.trim();
+  if (!d) return alert("UPI ID dalo!");
+
+  document.getElementById('upiOut').innerHTML = "⏳ UPI risk signals check ho rahe hain...";
+
+  const low = d.toLowerCase();
+  const riskyWords = ["rbi", "gov", "official", "refund", "kyc", "lottery", "cashback", "verification"];
+  const keywordHit = riskyWords.some(k => low.includes(k));
+  const invalid = !/^[a-z0-9._-]+@[a-z]+$/i.test(d);
+
+  const fraud = invalid || keywordHit;
+  const reason = invalid
+    ? "UPI format invalid lag raha hai"
+    : keywordHit
+      ? "High-risk keyword mila: RBI/gov/refund/KYC type claim"
+      : "Koi known keyword risk nahi mila";
+
+  const hash = addLedger('upi', 'UPI-RISK', d, fraud, reason);
+
+  document.getElementById('upiOut').innerHTML = shield(
+    `${d}<br>${reason}`,
+    fraud,
+    `Tx: ${hash}<br><b>Note:</b> Payment se pehle UPI app mein payee name zaroor verify karein.`
+  );
+}
+
+async function scanCrypto() {
+  const d = document.getElementById('cryptoInp').value.trim();
+  const t = document.getElementById('chainSel').value;
+  if (!d) return alert("Wallet address dalo!");
+
+  document.getElementById('cryptoOut').innerHTML = `⏳ ${t} wallet ko GACS blocklist se check kiya ja raha hai...`;
+
+  let fraud = false;
+  let detail = "GACS wallet blocklist mein match nahi mila";
+  let report = "";
+
+  try {
+    const res = await fetch(`${GACS}/wallets.csv?_=${Date.now()}`);
+    const csv = await res.text();
+    const hit = csv.split("
+").find(line => line.toLowerCase().includes(d.toLowerCase()));
+
+    if (hit) {
+      fraud = true;
+      const parts = hit.split(",");
+      detail = `GACS blocklist match: ${parts[1] || "Unknown chain"} | ${parts[2] || "Scam"}`;
+      report = parts[3] || "";
+    }
+  } catch {
+    detail = "GACS blocklist temporarily unavailable. Manual verification karein.";
+  }
+
+  const hash = addLedger('crypto', t + '-WALLET', d, fraud, detail);
+
+  document.getElementById('cryptoOut').innerHTML = shield(
+    `${d.slice(0, 24)}...<br>${detail}`,
+    fraud,
+    `${report ? `<a href="${report}" target="_blank" rel="noopener">GACS report dekhein</a><br>` : ""}Tx: ${hash}`
+  );
+}
+
+async function scanSocial() {
+  const d = document.getElementById('socialInp').value.trim();
+  if (!d) return alert("Social link, handle ya website URL dalo!");
+
+  document.getElementById('socialOut').innerHTML = "⏳ Social handle / link check ho raha hai...";
+
+  let platform = "twitter";
+  let handle = d.replace(/^@/, "");
+
+  if (d.includes("t.me") || d.toLowerCase().includes("telegram")) {
+    platform = "telegram";
+    handle = d.split("/").filter(Boolean).pop();
+  } else if (d.includes("instagram")) {
+    platform = "instagram";
+    handle = d.split("/").filter(Boolean).pop();
+  } else if (d.includes("x.com") || d.includes("twitter")) {
+    platform = "twitter";
+    handle = d.split("/").filter(Boolean).pop();
+  } else if (d.includes("youtube")) {
+    platform = "youtube";
+    handle = d.split("/").filter(Boolean).pop();
+  }
+
+  let fraud = false;
+  let detail = "GACS social scan se koi red flag nahi mila";
+  let report = "";
+
+  try {
+    const res = await fetch(`${GACS}/social-scan?handle=${encodeURIComponent(handle)}&platform=${platform}`);
+    const j = await res.json();
+
+    if (j.found) {
+      fraud = j.verdict === "red" || (j.risk_score || 0) >= 60;
+      detail = `GACS verdict: ${j.verdict} | Risk score: ${j.risk_score ?? "N/A"} | ${j.headline || ""}`;
+      report = j.report_url || "";
+    } else {
+      detail = "GACS database mein is handle ka record nahi mila";
+    }
+  } catch {
+    detail = "GACS social scan temporarily unavailable. Link kholne se pehle manual verification karein.";
+  }
+
+  const hash = addLedger('social', platform.toUpperCase(), d, fraud, detail);
+
+  document.getElementById('socialOut').innerHTML = shield(
+    `${d}<br>${detail}`,
+    fraud,
+    `${report ? `<a href="${report}" target="_blank" rel="noopener">GACS report dekhein</a><br>` : ""}Tx: ${hash}`
+  );
+}
+
+function detectQRType(text) {
+  const t = text.trim().toLowerCase();
+
+  if (t.startsWith("upi://")) return "upi";
+  if (/^[a-z0-9._-]+@[a-z]+$/i.test(text.trim())) return "upi";
+
+  if (
+    /^(0x[a-f0-9]{40})$/i.test(text.trim()) ||
+    /^(bc1[a-z0-9]+)/i.test(text.trim()) ||
+    /^(T[a-z0-9]{33})$/i.test(text.trim())
+  ) return "crypto";
+
+  if (/^(https?://|www.)/i.test(text.trim())) return "link";
+
+  return "unknown";
+}
+
+function extractUPI(text) {
+  try {
+    const url = new URL(text);
+    const pa = url.searchParams.get("pa");
+    if (pa) return pa;
+  } catch {}
+  return text.trim();
+}
+
+async function handleQR(text) {
+  const type = detectQRType(text);
+  let label = "";
+  let output = "";
+
+  if (type === "upi") {
+    const upi = extractUPI(text);
+    document.getElementById('upiInp').value = upi;
+    await scanUPI();
+    label = "UPI QR";
+    output = document.getElementById('upiOut').innerHTML;
+  }
+
+  else if (type === "crypto") {
+    document.getElementById('cryptoInp').value = text.trim();
+
+    if (/^0x/i.test(text)) document.getElementById('chainSel').value = "ETH";
+    else if (/^bc1/i.test(text)) document.getElementById('chainSel').value = "BTC";
+    else if (/^T[a-z0-9]{33}$/i.test(text)) document.getElementById('chainSel').value = "TRON";
+
+    await scanCrypto();
+    label = "Crypto Wallet QR";
+    output = document.getElementById('cryptoOut').innerHTML;
+  }
+
+  else if (type === "link") {
+    let url = text.trim();
+    if (!/^https?:///i.test(url)) url = "https://" + url;
+
+    const low = getHost(url).toLowerCase();
+    const suspicious = [
+      "telegram", "whatsapp", "giveaway", "double", "elon",
+      "refund", "kyc", "lottery", "free-crypto", "airdrop"
+    ].some(k => low.includes(k));
+
+    const hash = addLedger('social', 'QR-LINK', url, suspicious,
+      suspicious ? "Suspicious QR link pattern detected" : "QR link scanned; domain-level risk check recommended");
+
+    output = shield(
+      `${url}<br>${suspicious ? "QR link suspicious pattern detect hua" : "QR link scan ho gaya; link kholne se pehle scanner use karein"}`,
+      suspicious,
+      `Tx: ${hash}`
+    );
+
+    label = "Website / Link QR";
+  }
+
+  else {
+    output = shield(
+      `QR content samajh nahi aaya:<br><b>${text.slice(0, 120)}</b>`,
+      true,
+      "Manual review karein. Unknown QR par click ya payment na karein."
+    );
+    label = "Unknown QR";
+  }
+
+  document.getElementById('qrOut').innerHTML = `
+    <div style="background:#1e293b;border-radius:10px;padding:10px;margin-bottom:8px">
+      <b style="color:#f59e0b">📷 ${label} detected</b><br>
+      <small style="word-break:break-all">${text.slice(0, 200)}</small>
+    </div>
+    ${output}
+  `;
+}
+
+async function startQR() {
+  stopQR();
+  qrScanner = new Html5Qrcode("qrReader");
+
+  try {
+    await qrScanner.start(
+      { facingMode: "environment" },
+      { fps: 10, qrbox: { width: 240, height: 240 } },
+      decodedText => {
+        stopQR();
+        handleQR(decodedText);
+      },
+      () => {}
+    );
+    document.getElementById('qrOut').innerHTML = "⏳ Camera active hai — QR code camera ke saamne rakhein...";
+  } catch {
+    document.getElementById('qrOut').innerHTML = shield(
+      "Camera access nahi mila. Browser permission allow karein ya gallery se QR image upload karein.",
+      true
+    );
+  }
+}
+
+function stopQR() {
+  if (qrScanner) {
+    qrScanner.stop()
+      .then(() => {
+        qrScanner.clear();
+        qrScanner = null;
+      })
+      .catch(() => {
+        qrScanner = null;
+      });
+  }
+}
+
+async function scanQRImage(file) {
+  if (!file) return;
+  stopQR();
+
+  const tempScanner = new Html5Qrcode("qrReader");
+
+  try {
+    const text = await tempScanner.scanFile(file, true);
+    tempScanner.clear();
+    handleQR(text);
+  } catch {
+    tempScanner.clear();
+    document.getElementById('qrOut').innerHTML = shield(
+      "QR image read nahi ho payi. Clear photo upload karein.",
+      true
+    );
+  }
+}
+
 render();
 </script>
 </body>
