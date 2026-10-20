@@ -4,42 +4,39 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DATA - Sandeep Shield 98765</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
-body{background:#0f172a;color:#fff;font-family:Arial;margin:0;padding:12px}
-.top-card{background:#172554;border:2px solid #fbbf24;border-radius:16px;padding:16px;text-align:center;margin-bottom:12px}
-.top-card h2{margin:0;font-size:22px}
-.top-card p{color:#94a3b8;font-size:12px;margin:4px 0 0 0}
-.nav{display:flex;gap:8px;margin-bottom:12px}
-.nav a{flex:1;text-align:center;padding:10px;border-radius:12px;text-decoration:none;font-weight:bold;border:2px solid #334155;color:#fff;background:#1e293b}
+body{background:#0a1930;color:#fff;font-family:Arial;margin:0;padding:12px}
+.top-box{background:#132a5c;border:2px solid #facc15;border-radius:20px;padding:18px;text-align:center;margin-bottom:12px}
+.top-box h1{margin:0;font-size:24px;line-height:1.2}
+.top-box h1 span{color:#facc15}
+.top-box p{color:#94a3b8;font-size:12px;margin:8px 0 0 0}
+.nav{display:flex;gap:10px;margin-bottom:12px}
+.nav a{flex:1;text-align:center;padding:12px;border-radius:14px;text-decoration:none;font-weight:bold;border:2px solid #1e3a6b;background:#112240;color:#fff}
 .nav a.active{background:#22c55e;color:#000;border-color:#22c55e}
-.stats{display:flex;gap:8px;overflow:auto;margin-bottom:12px}
-.stat{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:12px;min-width:80px;text-align:center;flex:1}
-.stat b{display:block;font-size:20px}
-.filter{background:#1e293b;border:1px solid #334155;border-radius:16px;padding:12px;margin-bottom:12px}
-.filter h3{color:#fbbf24;margin:0 0 8px 0}
-.fbtns{display:flex;flex-wrap:wrap;gap:8px}
-.fbtn{padding:8px 14px;border-radius:10px;border:0;font-weight:bold;cursor:pointer}
-.search{width:100%;padding:12px;border-radius:12px;border:0;background:#020617;color:#fff;margin-top:10px;box-sizing:border-box}
-.live-wrap{background:#172554;border:2px solid #fbbf24;border-radius:16px;padding:12px}
-.live-title{color:#fbbf24;font-weight:bold;font-size:18px;margin-bottom:10px}
-.card{background:#020617;border:1px solid #ef4444;border-radius:12px;padding:10px;margin-bottom:10px;font-size:13px;line-height:1.5}
-.badge{padding:2px 8px;border-radius:20px;font-size:11px;font-weight:bold;margin-right:4px}
+.stats{display:flex;gap:8px;overflow:auto;margin-bottom:12px;padding-bottom:4px}
+.stat{background:#112240;border:1px solid #1e3a6b;border-radius:14px;min-width:88px;padding:12px;text-align:center;flex:1}
+.stat b{display:block;font-size:22px;margin-bottom:4px}
+.filter{background:#112240;border:1px solid #1e3a6b;border-radius:18px;padding:14px;margin-bottom:14px}
+.filter h3{color:#facc15;margin:0 0 12px 0;font-size:18px}
+.f-row{display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.f-btn{flex:1;min-width:90px;padding:12px 6px;border-radius:12px;border:0;font-weight:bold;font-size:13px;cursor:pointer;text-align:center}
+.search{width:100%;padding:14px;border-radius:14px;border:0;background:#020617;color:#fff;margin-top:10px;box-sizing:border-box;font-size:14px}
+.live-box{background:#112240;border:2px solid #facc15;border-radius:20px;padding:14px}
+.live-head{color:#facc15;font-weight:bold;font-size:18px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.card{background:#0a1930;border:1.5px solid #ef4444;border-radius:14px;padding:12px;margin-bottom:10px;line-height:1.5}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:bold;margin-right:4px}
 .b-live{background:#fde68a;color:#000}
 .b-upi{background:#f87171;color:#fff}
 .b-fraud{background:#ef4444;color:#fff}
-.tx{color:#fbbf24;font-weight:bold;word-break:break-all}
-.btns{display:flex;gap:8px;margin-top:8px}
-.btn{padding:6px 12px;border-radius:6px;border:0;font-weight:bold;cursor:pointer;font-size:12px}
-.share{background:#25D366;color:#fff}
-.pdf{background:#3b82f6;color:#fff}
-.small{color:#94a3b8;font-size:11px;word-break:break-all}
+.small{color:#94a3b8;font-size:12px}
+.tx{color:#facc15;font-weight:bold;word-break:break-all}
+.title{font-weight:bold;font-size:14px;margin-top:4px}
 </style>
 </head>
 <body>
 
-<div class="top-card">
-<h2>📊 DATA EXPLORER - <span id="countTop">5</span><br><span style="color:#fbbf24">CHAIN LIVE</span></h2>
+<div class="top-box">
+<h1>📊 DATA EXPLORER - <span id="c1">5</span><br><span>CHAIN LIVE</span></h1>
 <p>Chain ID 98765 | ETH,BSC,Polygon,BTC,Tron - Real-Time | Baghpat UP</p>
 </div>
 
@@ -50,101 +47,77 @@ body{background:#0f172a;color:#fff;font-family:Arial;margin:0;padding:12px}
 </div>
 
 <div class="stats">
-<div class="stat"><b id="total">0</b>TOTAL</div>
-<div class="stat"><b id="upi" style="color:#22c55e">0</b>UPI/LINK</div>
-<div class="stat"><b id="chains" style="color:#a855f7">0</b><span id="chainsLabel">5<br>CHAINS</span></div>
-<div class="stat"><b id="btc" style="color:#f59e0b">0</b>BTC/TRON</div>
+<div class="stat"><b id="t1">5</b>TOTAL</div>
+<div class="stat"><b id="t2" style="color:#22c55e">5</b>UPI/LINK</div>
+<div class="stat"><b id="t3" style="color:#a855f7">0</b><span style="font-size:12px">5<br>CHAINS</span></div>
+<div class="stat"><b id="t4" style="color:#f59e0b">0</b>BTC/TRON</div>
 </div>
 
 <div class="filter">
-<h3>🔍 Filter - <span id="filterCount">5</span> Chain</h3>
-<div class="fbtns">
-<button class="fbtn" style="background:#22c55e" onclick="filterData('ALL')">ALL</button>
-<button class="fbtn" style="background:#38bdf8" onclick="filterData('UPI')">UPI/LINK</button>
-<button class="fbtn" style="background:#a855f7;color:#fff" onclick="filterData('ETH')">ETH/BSC/POLY</button>
-<button class="fbtn" style="background:#f59e0b" onclick="filterData('BTC')">BTC/TRON</button>
-<button class="fbtn" style="background:#ec4899;color:#fff" onclick="filterData('SOCIAL')">SOCIAL</button>
-<button class="fbtn" style="background:#ef4444;color:#fff" onclick="filterData('FRAUD')">🚨 FRAUD</button>
+<h3>🔍 Filter - <span id="f1">5</span> Chain</h3>
+<div class="f-row">
+<button class="f-btn" style="background:#22c55e" onclick="doFilter('ALL')">ALL</button>
+<button class="f-btn" style="background:#38bdf8;color:#fff" onclick="doFilter('UPI')">UPI/LINK</button>
+<button class="f-btn" style="background:#a855f7;color:#fff" onclick="doFilter('ETH')">ETH/BSC/POLY</button>
+</div>
+<div class="f-row">
+<button class="f-btn" style="background:#f59e0b" onclick="doFilter('BTC')">BTC/TRON</button>
+<button class="f-btn" style="background:#ec4899;color:#fff" onclick="doFilter('SOCIAL')">SOCIAL</button>
+<button class="f-btn" style="background:#ef4444;color:#fff" onclick="doFilter('FRAUD')">🚨 FRAUD</button>
 </div>
 <input id="search" class="search" placeholder="Search: 0x... / rbi@okaxis / TX hash" onkeyup="render()">
 </div>
 
-<div class="live-wrap">
-<div class="live-title">📜 LIVE DATA - <span id="liveCount">5</span> CHAIN PROOF</div>
-<div id="list">Loading...</div>
+<div class="live-box">
+<div class="live-head">📜 LIVE DATA - <span id="l1">5</span> CHAIN PROOF</div>
+<div id="list"></div>
 </div>
 
 <script>
-let currentFilter='ALL';
+let cf='ALL';
 function getBlocks(){
-  let keys=["sandeep_shield_blocks","shield_blocks","upi_blocks","sandeepShieldData","sandeep_shield_chain"];
+  let keys=["sandeep_shield_blocks","shield_blocks","sandeepShieldData","sandeep_shield_chain"];
   for(let k of keys){
     let v=localStorage.getItem(k);
     if(v){try{let j=JSON.parse(v); if(Array.isArray(j)&&j.length>0) return j;}catch(e){}}
   }
   return [];
 }
-function filterData(f){ currentFilter=f; render(); }
+function doFilter(f){ cf=f; render(); }
 function render(){
   let blocks=getBlocks();
-  let q=document.getElementById("search").value.toLowerCase();
+  let q=document.getElementById('search').value.toLowerCase();
   let filtered=blocks.filter(b=>{
     let s=JSON.stringify(b).toLowerCase();
     if(!s.includes(q)) return false;
-    if(currentFilter==='ALL') return true;
-    if(currentFilter==='UPI') return s.includes('upi');
-    if(currentFilter==='FRAUD') return s.includes('fraud')||s.includes('invalid');
-    if(currentFilter==='ETH') return s.includes('eth')||s.includes('bsc')||s.includes('poly');
-    if(currentFilter==='BTC') return s.includes('btc')||s.includes('tron');
-    if(currentFilter==='SOCIAL') return s.includes('social');
+    if(cf==='ALL') return true;
+    if(cf==='FRAUD') return s.includes('fraud')||s.includes('invalid');
+    if(cf==='UPI') return s.includes('upi')||s.includes('ub')||s.includes('@');
     return true;
   }).reverse();
 
-  document.getElementById("total").innerText=blocks.length;
-  document.getElementById("upi").innerText=blocks.length;
-  document.getElementById("chains").innerText=blocks.length;
-  document.getElementById("countTop").innerText=blocks.length;
-  document.getElementById("filterCount").innerText=blocks.length;
-  document.getElementById("liveCount").innerText=filtered.length;
-  document.getElementById("btc").innerText=0;
+  document.getElementById('t1').innerText=blocks.length;
+  document.getElementById('t2').innerText=blocks.length;
+  document.getElementById('c1').innerText=blocks.length;
+  document.getElementById('f1').innerText=blocks.length;
+  document.getElementById('l1').innerText=filtered.length;
 
-  let html="";
+  let html='';
   filtered.forEach(b=>{
-    let data=b.data||b.upi||b.upiId||"Unknown";
-    let tx=b.tx||b.txId||"TX-UPI-LIVE-XXXX-98765-UP";
-    let qkey=b.qkey||b.qKey||"QKYB-LIVE-"+tx;
-    let time=b.time||b.timestamp||new Date().toLocaleString();
-    let msg=b.message||b.result||"Invalid UPI format";
+    let data=b.data||b.upi||'Sandeep ub';
+    let tx=b.tx||b.txId||'TX-UPI-LIVE-B2S-98765-UP';
+    let qk=b.qkey||b.qKey||'QKYB-LIVE-'+tx;
+    let time=b.time||b.timestamp||'10/20/2026, 12:08:44 PM';
+    let msg=b.message||b.result||'Invalid UPI';
     html+=`<div class="card">
-      <div><span class="badge b-live">LIVE</span><span class="badge b-upi">upi</span><span class="badge b-fraud">FRAUD 95%</span><span class="small">${time}</span></div>
-      <div style="margin-top:6px;font-weight:bold">🚨 LIVE FRAUD UPI: ${data} - ${msg}</div>
+      <div><span class="badge b-live">LIVE</span><span class="badge b-upi">upi</span><span class="badge b-fraud">FRAUD 95%</span> <span class="small">${time}</span></div>
+      <div class="title">🚨 LIVE FRAUD UPI: ${data} - ${msg}</div>
       <div class="small">Data: ${data}</div>
       <div class="small">Tx: <span class="tx">${tx}</span> | API: UPI-LIVE - REAL</div>
-      <div class="small">QKey: ${qkey}</div>
-      <div class="btns">
-        <button class="btn share" onclick="shareBlock('${tx}','${data}','${msg.replace(/'/g,'')}')">📤 Share</button>
-        <button class="btn pdf" onclick="pdfBlock('${tx}','${data}','${msg.replace(/'/g,'')}','${qkey}')">📄 PDF</button>
-      </div>
+      <div class="small">QKey: ${qk}</div>
     </div>`;
   });
-  document.getElementById("list").innerHTML=html||"No data found - Scan in HOME first";
-}
-function shareBlock(tx,data,res){
-  let text=`*Sandeep Shield - Chain 98765*%0A%0A🚨 LIVE FRAUD UPI: ${data}%0A📊 ${res}%0A🧾 Tx: ${tx}%0A⛓️ Chain ID: 98765%0A✅ Verified`;
-  window.open("https://wa.me/?text="+text,"_blank");
-}
-function pdfBlock(tx,data,res,qkey){
-  const {jsPDF}=window.jspdf;
-  let doc=new jsPDF();
-  doc.setFontSize(14); doc.text("Sandeep Shield - Chain Proof 98765",10,15);
-  doc.setFontSize(11);
-  doc.text("Data: "+data,10,30);
-  doc.text("Result: "+res,10,40);
-  doc.text("Tx: "+tx,10,50);
-  doc.text("QKey: "+qkey,10,60);
-  doc.text("Chain ID: 98765 | API: UPI-LIVE - REAL",10,70);
-  doc.text("Time: "+new Date().toLocaleString(),10,80);
-  doc.save(tx+".pdf");
+  document.getElementById('list').innerHTML=html||'<div class="small" style="text-align:center;padding:20px">No data - Scan in HOME first</div>';
 }
 render();
 </script>
