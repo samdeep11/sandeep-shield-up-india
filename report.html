@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>REPORT - SANDEEP SHIELD</title>
+<style>
+body{margin:0;background:#0a1931;color:#fff;font-family:system-ui;padding:10px}
+.card{background:#102542;border:1px solid #1e3a5f;padding:14px;border-radius:12px;margin:10px 0}
+.btn{width:100%;padding:13px;border:none;border-radius:10px;font-weight:900;cursor:pointer;margin-top:8px}
+input,textarea,select{width:100%;padding:12px;border-radius:10px;background:#020617;color:#fff;border:1px solid #334155;margin-top:6px;box-sizing:border-box}
+label{font-size:11px;color:#94a3b8;font-weight:700;margin-top:10px;display:block}
+</style>
+</head>
+<body>
+<div style="text-align:center;padding:10px">
+<div style="font-size:26px;font-weight:900">🚨 REPORT <span style="color:#ef4444">FRAUD</span></div>
+<div style="font-size:10px;color:#94a3b8">UP, INDIA - Real-Time Reporting - Chain ID 98765</div>
+</div>
+
+<!-- 6 BUTTON NAVIGATION -->
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin:10px 0">
+<button class="btn" style="background:#102542;color:#fff;border:1px solid #334155;margin:0" onclick="location.href='index.html'">🏠 HOME</button>
+<button class="btn" style="background:#102542;color:#f9d678;border:1px solid #f9d678;margin:0" onclick="location.href='data.html'">📊 DATA</button>
+<button class="btn" style="background:#102542;color:#22c55e;border:1px solid #22c55e;margin:0" onclick="location.href='explorer.html'">⛓️ CHAIN</button>
+<button class="btn" style="background:#ef4444;color:#fff;margin:0">🚨 REPORT</button>
+<button class="btn" style="background:#102542;color:#fff;border:1px solid #334155;margin:0" onclick="location.href='about.html'">👤 ABOUT</button>
+<button class="btn" style="background:#102542;color:#fff;border:1px solid #334155;margin:0" onclick="location.href='privacy.html'">🔒 PRIVACY</button>
+</div>
+
+<div class="card" style="border:2px solid #ef4444;background:linear-gradient(135deg,#2a0a0a,#102542)">
+<b style="color:#ef4444">📝 LIVE FRAUD REPORT - Direct to Chain</b>
+
+<label>FRAUD TYPE</label>
+<select id="fType">
+<option value="upi">UPI Fraud</option>
+<option value="crypto">Crypto / Blockchain Scam</option>
+<option value="social">Social Media / Telegram Scam</option>
+<option value="other">Other</option>
+</select>
+
+<label>UPI / Wallet Address / Social ID (To Report)</label>
+<input id="fId" placeholder="Ex: rbi-official@okaxis or 0x1234... or t.me/fake-elon">
+
+<label>What Happened? Describe in detail</label>
+<textarea id="fDesc" rows="3" placeholder="He took 5000 rs saying RBI verification..."></textarea>
+
+<label>Your Name (Optional)</label>
+<input id="fName" placeholder="Sandeep - UP">
+
+<button class="btn" style="background:#ef4444;color:#fff;font-size:15px" onclick="submitReport()">🚨 SUBMIT TO CHAIN - CREATE LIVE BLOCK</button>
+
+<div id="reportOut"></div>
+</div>
+
+<div class="card" style="border:1px dashed #f9d678">
+<b style="font-size:12px;color:#f9d678">💡 How it Works?</b><br>
+<small style="color:#94a3b8">1. User writes report here<br>2. Code converts it to a BLOCK<br>3. It appears in DATA and CHAIN EXPLORER<br>4. You get a Tx Hash as Proof</small>
+</div>
+
+<script>
+function submitReport(){
+ let type=document.getElementById('fType').value;
+ let id=document.getElementById('fId').value.trim();
+ let desc=document.getElementById('fDesc').value.trim();
+ let name=document.getElementById('fName').value.trim();
+ if(!id){alert('Please enter UPI / ID!');return;}
+ if(!desc){alert('Please describe what happened!');return;}
+
+ let chain=JSON.parse(localStorage.getItem('shield_final_up_realtime')||localStorage.getItem('shield_chain')||'[]');
+ let hash="TX-REPORT-"+type.toUpperCase()+"-"+Math.random().toString(36).slice(2,5).toUpperCase()+"-98765-UP";
+ let msg=`REPORT-${type.toUpperCase()}: ${id} | ${desc} | By: ${name||'Anonymous'}`;
+ 
+ chain.push({msg:msg,cat:type,fraud:true,hash:hash,time:Date.now(),report:true});
+ localStorage.setItem('shield_final_up_realtime',JSON.stringify(chain));
+ localStorage.setItem('shield_chain',JSON.stringify(chain));
+
+ document.getElementById('reportOut').innerHTML=`
+ <div style="margin-top:12px;padding:12px;background:#22c55e20;border:1px solid #22c55e;border-radius:10px">
+ <b style="color:#22c55e">✅ REPORT ADDED TO CHAIN!</b><br><br>
+ <b>Tx Hash:</b> <span style="color:#f9d678">${hash}</span><br>
+ <b>Type:</b> ${type}<br>
+ <b>ID:</b> ${id}<br><br>
+ <button class="btn" style="background:#f9d678;color:#000;margin:0" onclick="location.href='explorer.html'">⛓️ VIEW IN CHAIN →</button>
+ <button class="btn" style="background:#102542;color:#fff;border:1px solid #334155" onclick="location.href='data.html'">📊 VIEW IN DATA →</button>
+ </div>
+ `;
+ document.getElementById('fId').value='';
+ document.getElementById('fDesc').value='';
+}
+</script>
+</body>
+</html>
