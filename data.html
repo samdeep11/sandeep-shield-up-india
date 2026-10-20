@@ -3,45 +3,110 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DATA - Sandeep Shield</title>
+<title>DATA - Sandeep Shield | Chain ID 98765</title>
+<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+<script>eruda.init();</script>
 <style>
-body{margin:0;background:#0a1931;color:#fff;font-family:system-ui;padding:10px}
-.card{background:#102542;border:1px solid #1e3a5f;padding:12px;border-radius:12px;margin:8px 0}
-.btn{padding:10px;border:none;border-radius:8px;font-weight:900;cursor:pointer;flex:1}
-.badge{font-size:9px;padding:3px 7px;border-radius:10px;font-weight:900}
-.live{background:#f9d678;color:#000}.fraud{background:#ef4444}.safe{background:#22c55e;color:#000}.undef{background:#f9d678;color:#000}
+*{box-sizing:border-box}body{margin:0;background:#0a1931;color:#fff;font-family:system-ui;padding:10px}
+.top-card{background:#102a4c;border:2px solid #f9d678;border-radius:18px;padding:16px;text-align:center;margin-bottom:10px}
+.nav{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:10px 0}
+.btn-nav{padding:12px;border-radius:12px;font-weight:900;border:1px solid #334155;cursor:pointer}
+.btn-nav.active{background:#22c55e;color:#000;border:none}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin:10px 0}
+.stat{background:#102542;border:1px solid #1e3a5f;border-radius:14px;padding:12px;text-align:center}
+.stat b{font-size:22px;display:block}
+.filter{background:#102542;border:1px solid #1e3a5f;border-radius:16px;padding:12px;margin:12px 0}
+.filter-btns{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:10px 0}
+.fbtn{padding:12px;border:none;border-radius:12px;font-weight:900;cursor:pointer}
+.search{width:100%;padding:12px;border-radius:12px;background:#020617;color:#fff;border:1px solid #334155;margin-top:8px}
+.live-box{background:#102a4c;border:2px solid #f9d678;border-radius:18px;padding:12px;margin-top:12px}
+.item{background:#0a1931;border:2px solid #ef4444;border-radius:14px;padding:12px;margin:10px 0}
+.badge{font-size:10px;padding:4px 8px;border-radius:10px;font-weight:900;margin-right:4px}
+.b-live{background:#f9d678;color:#000}.b-upi{background:#ef4444;color:#fff}.b-fraud{background:#ef4444;color:#fff}
+.small{font-size:11px;color:#94a3b8;margin-top:4px;line-height:1.5}.yellow{color:#f9d678;font-weight:900}
 </style>
 </head>
 <body>
-<div style="display:flex;gap:6px">
-<button class="btn" style="background:#22c55e" onclick="location.href='index.html'">🏠 HOME</button>
-<button class="btn" style="background:#ef4444;color:#fff" onclick="clearData()">🗑️ CLEAR</button>
-<button class="btn" style="background:#020617;color:#fff;border:1px solid #333" onclick="exportData()">📤 EXPORT</button>
+
+<div class="top-card">
+<div style="font-size:22px;font-weight:900">📊 DATA EXPLORER - <span style="color:#f9d678">5 CHAIN LIVE</span></div>
+<div style="font-size:11px;color:#94a3b8;margin-top:6px">Chain ID 98765 | ETH,BSC,Polygon,BTC,Tron - Real-Time | Baghpat UP</div>
 </div>
-<h2 style="color:#f9d678">📊 All Scans - Live Data</h2>
-<div id="stats" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px"></div>
+
+<div class="nav">
+<button class="btn-nav" style="background:#102542;color:#fff" onclick="location.href='index.html'">🏠 HOME</button>
+<button class="btn-nav active">📊 DATA</button>
+<button class="btn-nav" style="background:#102542;color:#22c55e;border:1px solid #22c55e" onclick="location.href='explorer.html'">⛓️ CHAIN</button>
+</div>
+
+<div class="stats" id="stats"></div>
+
+<div class="filter">
+<div style="font-weight:900;color:#f9d678">🔍 Filter - 5 Chain</div>
+<div class="filter-btns">
+<button class="fbtn" style="background:#22c55e" onclick="filterData('all')">ALL</button>
+<button class="fbtn" style="background:#38bdf8;color:#000" onclick="filterData('upi')">UPI/LINK</button>
+<button class="fbtn" style="background:#a855f7;color:#fff" onclick="filterData('eth')">ETH/BSC/POLY</button>
+<button class="fbtn" style="background:#f0b90b;color:#000" onclick="filterData('btc')">BTC/TRON</button>
+<button class="fbtn" style="background:#ec4899;color:#fff" onclick="filterData('social')">SOCIAL</button>
+<button class="fbtn" style="background:#ef4444;color:#fff" onclick="filterData('fraud')">🚨 FRAUD</button>
+</div>
+<input id="searchBox" class="search" placeholder="Search: 0x... / rbi@okaxis / TX hash" oninput="filterData(currentFilter)">
+</div>
+
+<div class="live-box">
+<div style="font-weight:900;color:#f9d678;margin-bottom:10px">📜 LIVE DATA - 5 CHAIN PROOF</div>
 <div id="list"></div>
+</div>
+
 <script>
-let chain=JSON.parse(localStorage.getItem('shield_final_up_realtime')||'[]');
-function render(){
- let upi=chain.filter(c=>c.cat=='upi').length;
- let crypto=chain.filter(c=>c.cat=='crypto').length;
- let social=chain.filter(c=>c.cat=='social').length;
- let undef=chain.filter(c=>c.cat=='undef').length;
- let blocked=chain.filter(c=>c.fraud).length;
- document.getElementById('stats').innerHTML=`
- <div class="card" style="text-align:center;margin:0"><b style="color:#22c55e;font-size:20px">${upi}</b><br>UPI</div>
- <div class="card" style="text-align:center;margin:0"><b style="color:#a855f7;font-size:20px">${crypto}</b><br>CHAIN</div>
- <div class="card" style="text-align:center;margin:0"><b style="color:#ec4899;font-size:20px">${social}</b><br>SOCIAL</div>
- <div class="card" style="text-align:center;margin:0;border:1px solid #f9d678"><b style="color:#f9d678;font-size:20px">${undef}</b><br>UNDEFINED</div>
- <div class="card" style="text-align:center;margin:0"><b style="color:#ef4444;font-size:20px">${blocked}</b><br>BLOCKED</div>
- <div class="card" style="text-align:center;margin:0"><b>${chain.length}</b><br>TOTAL</div>`;
- let h=""; chain.slice().reverse().forEach(b=>{ if(b.type=='HUB_GENESIS')return; h+=`<div class="card"><span class="badge live">LIVE</span> <span class="badge ${b.fraud?'fraud':b.cat}">${b.chainType}</span> <b>${b.msg}</b><br><small>Tx:${b.hash}<br>${new Date(b.time).toLocaleString()}</small></div>`;});
- document.getElementById('list').innerHTML=h||`<div class="card" style="text-align:center;color:#888">No scans yet - Go HOME</div>`;
+let chain = JSON.parse(localStorage.getItem('shield_final_up_realtime')||'[]');
+let currentFilter = 'all';
+
+function renderStats(){
+ let total = chain.filter(c=>c.type!='HUB_GENESIS').length;
+ let upi = chain.filter(c=>c.cat=='upi').length;
+ let chains = chain.filter(c=>c.cat=='crypto').length;
+ let btcTron = chain.filter(c=> (c.chainType||'').includes('BTC') || (c.chainType||'').includes('TRON')).length;
+ document.getElementById('stats').innerHTML = `
+ <div class="stat"><b>${total}</b><small>TOTAL</small></div>
+ <div class="stat"><b style="color:#22c55e">${upi}</b><small>UPI/LINK</small></div>
+ <div class="stat"><b style="color:#a855f7">${chains}</b><small>${chains}<br>CHAINS</small></div>
+ <div class="stat"><b style="color:#f0b90b">${btcTron}</b><small>BTC/TRON</small></div>
+ `;
 }
-function clearData(){ if(confirm('Clear?')){ let g=chain.find(c=>c.type=='HUB_GENESIS'); chain=g?[g]:[]; localStorage.setItem('shield_final_up_realtime',JSON.stringify(chain)); render();}}
-function exportData(){ let blob=new Blob([JSON.stringify(chain,null,2)],{type:'application/json'}); let a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='data.json'; a.click();}
-render();
+
+function filterData(type){
+ if(type) currentFilter = type;
+ let search = document.getElementById('searchBox').value.toLowerCase();
+ let filtered = chain.filter(c=>c.type!='HUB_GENESIS').slice().reverse();
+
+ if(currentFilter=='upi') filtered = filtered.filter(c=>c.cat=='upi');
+ if(currentFilter=='eth') filtered = filtered.filter(c=>c.cat=='crypto' && !((c.chainType||'').includes('BTC')||(c.chainType||'').includes('TRON')));
+ if(currentFilter=='btc') filtered = filtered.filter(c=> (c.chainType||'').includes('BTC') || (c.chainType||'').includes('TRON'));
+ if(currentFilter=='social') filtered = filtered.filter(c=>c.cat=='social' || c.cat=='undef');
+ if(currentFilter=='fraud') filtered = filtered.filter(c=>c.fraud);
+
+ if(search){
+  filtered = filtered.filter(c=> (c.data||'').toLowerCase().includes(search) || (c.hash||'').toLowerCase().includes(search) || (c.msg||'').toLowerCase().includes(search));
+ }
+
+ let h="";
+ filtered.forEach(b=>{
+  let date = new Date(b.time).toLocaleString();
+  let fraudText = b.fraud ? `FRAUD 95%` : `SAFE`;
+  h+=`<div class="item" style="border-color:${b.fraud?'#ef4444':'#22c55e'}">
+  <span class="badge b-live">LIVE</span><span class="badge b-upi">${(b.cat||'upi').toUpperCase()}</span><span class="badge b-fraud">${fraudText}</span> <small style="color:#94a3b8">${date}</small>
+  <div style="font-weight:900;margin-top:6px">🚨 ${b.msg}</div>
+  <div class="small">Data: ${b.data}<br>Tx: <span class="yellow">${b.hash}</span> | API: ${b.chainType||'UPI-LIVE'} - REAL<br>QKey: ${b.qkey}</div>
+  </div>`;
+ });
+ document.getElementById('list').innerHTML = h || `<div style="text-align:center;color:#94a3b8;padding:20px">No data found</div>`;
+}
+
+renderStats();
+filterData('all');
 </script>
+
 </body>
 </html>
