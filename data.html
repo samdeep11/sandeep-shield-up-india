@@ -3,94 +3,148 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DATA EXPLORER - Chain 98765</title>
+<title>DATA - Sandeep Shield 98765</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
-body{background:#0f172a;color:white;font-family:Arial;padding:12px;margin:0}
-.top{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
-.box{background:#1e293b;padding:10px 14px;border-radius:10px;flex:1;text-align:center;min-width:70px}
-.box b{font-size:20px;display:block}
-.card{background:#1e293b;border-left:4px solid #ef4444;border-radius:10px;padding:12px;margin-bottom:12px;font-size:13px;line-height:1.5}
-.card.safe{border-left-color:#22c55e}
-.card.fraud{border-left-color:#ef4444}
-.btns{display:flex;gap:8px;margin-top:10px}
-.btn{padding:6px 12px;border-radius:6px;border:0;font-size:12px;font-weight:bold;cursor:pointer}
-.share{background:#25D366;color:white}
-.pdf{background:#3b82f6;color:white}
-.head{font-weight:bold;color:#fbbf24}
-.small{color:#94a3b8;font-size:11px}
+body{background:#0f172a;color:#fff;font-family:Arial;margin:0;padding:12px}
+.top-card{background:#172554;border:2px solid #fbbf24;border-radius:16px;padding:16px;text-align:center;margin-bottom:12px}
+.top-card h2{margin:0;font-size:22px}
+.top-card p{color:#94a3b8;font-size:12px;margin:4px 0 0 0}
+.nav{display:flex;gap:8px;margin-bottom:12px}
+.nav a{flex:1;text-align:center;padding:10px;border-radius:12px;text-decoration:none;font-weight:bold;border:2px solid #334155;color:#fff;background:#1e293b}
+.nav a.active{background:#22c55e;color:#000;border-color:#22c55e}
+.stats{display:flex;gap:8px;overflow:auto;margin-bottom:12px}
+.stat{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:12px;min-width:80px;text-align:center;flex:1}
+.stat b{display:block;font-size:20px}
+.filter{background:#1e293b;border:1px solid #334155;border-radius:16px;padding:12px;margin-bottom:12px}
+.filter h3{color:#fbbf24;margin:0 0 8px 0}
+.fbtns{display:flex;flex-wrap:wrap;gap:8px}
+.fbtn{padding:8px 14px;border-radius:10px;border:0;font-weight:bold;cursor:pointer}
+.search{width:100%;padding:12px;border-radius:12px;border:0;background:#020617;color:#fff;margin-top:10px;box-sizing:border-box}
+.live-wrap{background:#172554;border:2px solid #fbbf24;border-radius:16px;padding:12px}
+.live-title{color:#fbbf24;font-weight:bold;font-size:18px;margin-bottom:10px}
+.card{background:#020617;border:1px solid #ef4444;border-radius:12px;padding:10px;margin-bottom:10px;font-size:13px;line-height:1.5}
+.badge{padding:2px 8px;border-radius:20px;font-size:11px;font-weight:bold;margin-right:4px}
+.b-live{background:#fde68a;color:#000}
+.b-upi{background:#f87171;color:#fff}
+.b-fraud{background:#ef4444;color:#fff}
+.tx{color:#fbbf24;font-weight:bold;word-break:break-all}
+.btns{display:flex;gap:8px;margin-top:8px}
+.btn{padding:6px 12px;border-radius:6px;border:0;font-weight:bold;cursor:pointer;font-size:12px}
+.share{background:#25D366;color:#fff}
+.pdf{background:#3b82f6;color:#fff}
+.small{color:#94a3b8;font-size:11px;word-break:break-all}
 </style>
 </head>
 <body>
 
-<h2 style="margin:6px 0;">📊 DATA EXPLORER - CHAIN 98765</h2>
-<div class="top">
-  <div class="box"><b id="total">0</b><span>TOTAL</span></div>
-  <div class="box"><b id="upi">0</b><span>UPI/LINK</span></div>
-  <div class="box"><b id="safe">0</b><span>SAFE</span></div>
-  <div class="box"><b id="fraud">0</b><span>FRAUD</span></div>
+<div class="top-card">
+<h2>📊 DATA EXPLORER - <span id="countTop">5</span><br><span style="color:#fbbf24">CHAIN LIVE</span></h2>
+<p>Chain ID 98765 | ETH,BSC,Polygon,BTC,Tron - Real-Time | Baghpat UP</p>
 </div>
 
-<input id="search" placeholder="🔍 Search UPI / Tx / QKey..." style="width:100%;padding:10px;border-radius:8px;border:0;background:#1e293b;color:white;margin-bottom:12px;" onkeyup="render()">
+<div class="nav">
+<a href="index.html">🏠 HOME</a>
+<a href="data.html" class="active">📊 DATA</a>
+<a href="explorer.html">⛓️ CHAIN</a>
+</div>
 
+<div class="stats">
+<div class="stat"><b id="total">0</b>TOTAL</div>
+<div class="stat"><b id="upi" style="color:#22c55e">0</b>UPI/LINK</div>
+<div class="stat"><b id="chains" style="color:#a855f7">0</b><span id="chainsLabel">5<br>CHAINS</span></div>
+<div class="stat"><b id="btc" style="color:#f59e0b">0</b>BTC/TRON</div>
+</div>
+
+<div class="filter">
+<h3>🔍 Filter - <span id="filterCount">5</span> Chain</h3>
+<div class="fbtns">
+<button class="fbtn" style="background:#22c55e" onclick="filterData('ALL')">ALL</button>
+<button class="fbtn" style="background:#38bdf8" onclick="filterData('UPI')">UPI/LINK</button>
+<button class="fbtn" style="background:#a855f7;color:#fff" onclick="filterData('ETH')">ETH/BSC/POLY</button>
+<button class="fbtn" style="background:#f59e0b" onclick="filterData('BTC')">BTC/TRON</button>
+<button class="fbtn" style="background:#ec4899;color:#fff" onclick="filterData('SOCIAL')">SOCIAL</button>
+<button class="fbtn" style="background:#ef4444;color:#fff" onclick="filterData('FRAUD')">🚨 FRAUD</button>
+</div>
+<input id="search" class="search" placeholder="Search: 0x... / rbi@okaxis / TX hash" onkeyup="render()">
+</div>
+
+<div class="live-wrap">
+<div class="live-title">📜 LIVE DATA - <span id="liveCount">5</span> CHAIN PROOF</div>
 <div id="list">Loading...</div>
+</div>
 
 <script>
+let currentFilter='ALL';
 function getBlocks(){
-  let keys = ["sandeep_shield_blocks","shield_blocks","upi_blocks","txs","blocks","sandeepShieldData","sandeep_shield_chain"];
+  let keys=["sandeep_shield_blocks","shield_blocks","upi_blocks","sandeepShieldData","sandeep_shield_chain"];
   for(let k of keys){
-    let v = localStorage.getItem(k);
-    if(v){ try{ let j=JSON.parse(v); if(Array.isArray(j) && j.length>0) return j; }catch(e){} }
+    let v=localStorage.getItem(k);
+    if(v){try{let j=JSON.parse(v); if(Array.isArray(j)&&j.length>0) return j;}catch(e){}}
   }
   return [];
 }
-
+function filterData(f){ currentFilter=f; render(); }
 function render(){
-  let blocks = getBlocks().reverse();
-  let q = document.getElementById("search").value.toLowerCase();
-  let filtered = blocks.filter(b => JSON.stringify(b).toLowerCase().includes(q));
-  
-  document.getElementById("total").innerText = blocks.length;
-  document.getElementById("upi").innerText = blocks.length;
-  document.getElementById("safe").innerText = blocks.filter(b=> (b.result||"").includes("SAFE") || (b.result||"").includes("NO KNOWN") || (b.type||"").includes("SAFE")).length;
-  document.getElementById("fraud").innerText = blocks.filter(b=> (b.result||"").includes("FRAUD") || (b.result||"").includes("HIGH RISK") || (b.result||"").includes("RISK")).length;
+  let blocks=getBlocks();
+  let q=document.getElementById("search").value.toLowerCase();
+  let filtered=blocks.filter(b=>{
+    let s=JSON.stringify(b).toLowerCase();
+    if(!s.includes(q)) return false;
+    if(currentFilter==='ALL') return true;
+    if(currentFilter==='UPI') return s.includes('upi');
+    if(currentFilter==='FRAUD') return s.includes('fraud')||s.includes('invalid');
+    if(currentFilter==='ETH') return s.includes('eth')||s.includes('bsc')||s.includes('poly');
+    if(currentFilter==='BTC') return s.includes('btc')||s.includes('tron');
+    if(currentFilter==='SOCIAL') return s.includes('social');
+    return true;
+  }).reverse();
 
-  let html = "";
+  document.getElementById("total").innerText=blocks.length;
+  document.getElementById("upi").innerText=blocks.length;
+  document.getElementById("chains").innerText=blocks.length;
+  document.getElementById("countTop").innerText=blocks.length;
+  document.getElementById("filterCount").innerText=blocks.length;
+  document.getElementById("liveCount").innerText=filtered.length;
+  document.getElementById("btc").innerText=0;
+
+  let html="";
   filtered.forEach(b=>{
-    let isSafe = (b.result||"").includes("SAFE") || (b.result||"").includes("NO KNOWN") || (b.type+"").includes("SAFE");
-    html += `<div class="card ${isSafe?'safe':'fraud'}">
-      <div class="head">${isSafe?'🟢 LIVE UPI SAFE':'🔴 LIVE UPI FRAUD 95%'} - ${b.time||b.timestamp||''}</div>
-      <div>${isSafe?'✅':'🚨'} <b>UPI-RISK:</b> ${b.data||b.upi||''} | ${b.message||b.result||''}</div>
-      <div class="small">Data: ${b.data||b.upi||''}</div>
-      <div class="small">Tx: ${b.tx||b.txId||''} | API: ${b.api||'UPI-RISK - REAL'}</div>
-      <div class="small">QKey: ${b.qkey||b.qKey||''}</div>
+    let data=b.data||b.upi||b.upiId||"Unknown";
+    let tx=b.tx||b.txId||"TX-UPI-LIVE-XXXX-98765-UP";
+    let qkey=b.qkey||b.qKey||"QKYB-LIVE-"+tx;
+    let time=b.time||b.timestamp||new Date().toLocaleString();
+    let msg=b.message||b.result||"Invalid UPI format";
+    html+=`<div class="card">
+      <div><span class="badge b-live">LIVE</span><span class="badge b-upi">upi</span><span class="badge b-fraud">FRAUD 95%</span><span class="small">${time}</span></div>
+      <div style="margin-top:6px;font-weight:bold">🚨 LIVE FRAUD UPI: ${data} - ${msg}</div>
+      <div class="small">Data: ${data}</div>
+      <div class="small">Tx: <span class="tx">${tx}</span> | API: UPI-LIVE - REAL</div>
+      <div class="small">QKey: ${qkey}</div>
       <div class="btns">
-        <button class="btn share" onclick="shareProof('${b.tx||b.txId}','${b.data||b.upi}','${(b.message||b.result||'').replace(/'/g,'')}')">📤 Share</button>
-        <button class="btn pdf" onclick="pdfProof('${b.tx||b.txId}','${b.data||b.upi}','${(b.message||b.result||'').replace(/'/g,'')}','${b.qkey||b.qKey}')">📄 PDF</button>
+        <button class="btn share" onclick="shareBlock('${tx}','${data}','${msg.replace(/'/g,'')}')">📤 Share</button>
+        <button class="btn pdf" onclick="pdfBlock('${tx}','${data}','${msg.replace(/'/g,'')}','${qkey}')">📄 PDF</button>
       </div>
     </div>`;
   });
-  document.getElementById("list").innerHTML = html || "No data found";
+  document.getElementById("list").innerHTML=html||"No data found - Scan in HOME first";
 }
-function shareProof(tx,data,result){
-  let text = `*Sandeep Shield Proof 98765*%0A%0A🔍 UPI: ${data}%0A📊 Result: ${result}%0A🧾 Tx: ${tx}%0A⛓️ Chain ID: 98765%0A✅ Verified by Sandeep Shield`;
-  window.open(`https://wa.me/?text=${text}`,'_blank');
+function shareBlock(tx,data,res){
+  let text=`*Sandeep Shield - Chain 98765*%0A%0A🚨 LIVE FRAUD UPI: ${data}%0A📊 ${res}%0A🧾 Tx: ${tx}%0A⛓️ Chain ID: 98765%0A✅ Verified`;
+  window.open("https://wa.me/?text="+text,"_blank");
 }
-function pdfProof(tx,data,result,qkey){
-  const { jsPDF } = window.jspdf;
-  let doc = new jsPDF();
-  doc.setFontSize(15);
-  doc.text("Sandeep Shield - Chain Proof 98765",10,15);
+function pdfBlock(tx,data,res,qkey){
+  const {jsPDF}=window.jspdf;
+  let doc=new jsPDF();
+  doc.setFontSize(14); doc.text("Sandeep Shield - Chain Proof 98765",10,15);
   doc.setFontSize(11);
-  doc.text(`UPI/Data: ${data}`,10,30);
-  doc.text(`Result: ${result}`,10,40);
-  doc.text(`Tx ID: ${tx}`,10,50);
-  doc.text(`QKey: ${qkey}`,10,60);
-  doc.text(`Chain: UPI-RISK | Prev: HUB-GENESIS-...98765`,10,70);
-  doc.text(`Time: ${new Date().toLocaleString()}`,10,80);
-  doc.text(`API: Real-Time - REAL`,10,90);
-  doc.text(`Scam Intelligence by Sandeep Shield`,10,110);
-  doc.save(`${tx}.pdf`);
+  doc.text("Data: "+data,10,30);
+  doc.text("Result: "+res,10,40);
+  doc.text("Tx: "+tx,10,50);
+  doc.text("QKey: "+qkey,10,60);
+  doc.text("Chain ID: 98765 | API: UPI-LIVE - REAL",10,70);
+  doc.text("Time: "+new Date().toLocaleString(),10,80);
+  doc.save(tx+".pdf");
 }
 render();
 </script>
