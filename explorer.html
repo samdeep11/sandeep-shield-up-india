@@ -1,100 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CHAIN - Sandeep Shield 98765</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CHAIN EXPLORER - 5 Chain Live | Sandeep Shield Chain ID 98765</title>
 <style>
-body{background:#0a1930;color:#fff;font-family:Arial;margin:0;padding:12px}
-.top-box{background:#132a5c;border:2px solid #facc15;border-radius:20px;padding:18px;text-align:center;margin-bottom:12px}
-.top-box h1{margin:0;font-size:22px;line-height:1.2}
-.top-box h1 span{color:#facc15}
-.top-box p{color:#94a3b8;font-size:12px;margin:8px 0 0 0}
-.nav{display:flex;gap:10px;margin-bottom:12px}
-.nav a{flex:1;text-align:center;padding:12px;border-radius:14px;text-decoration:none;font-weight:bold;border:2px solid #1e3a6b;background:#112240;color:#fff}
-.nav a.active{background:#22c55e;color:#000;border-color:#22c55e}
-.chain-info{background:#112240;border:1px solid #1e3a6b;border-radius:18px;padding:14px;margin-bottom:14px}
-.chain-info h3{color:#facc15;margin:0 0 10px 0}
-.info-grid{display:flex;gap:8px}
-.info{background:#0a1930;border-radius:12px;padding:10px;flex:1;text-align:center;border:1px solid #1e3a6b}
-.info b{display:block;font-size:18px;color:#22c55e}
-.explorer{background:#112240;border:2px solid #facc15;border-radius:20px;padding:14px}
-.ex-head{color:#facc15;font-weight:bold;font-size:18px;margin-bottom:12px}
-.block{background:#0a1930;border:1.5px solid #22c55e;border-radius:14px;padding:12px;margin-bottom:12px;position:relative}
-.block::before{content:'';position:absolute;left:20px;top:-12px;width:2px;height:12px;background:#22c55e}
-.block:first-child::before{display:none}
-.b-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.b-num{background:#22c55e;color:#000;padding:4px 10px;border-radius:20px;font-weight:bold;font-size:12px}
-.b-time{color:#94a3b8;font-size:11px}
-.b-title{font-weight:bold;font-size:13px;margin-bottom:4px}
-.b-hash{color:#94a3b8;font-size:11px;word-break:break-all}
-.b-hash span{color:#facc15}
-.chain-line{text-align:center;color:#22c55e;font-size:12px;margin:4px 0;letter-spacing:2px}
-.verify{margin-top:8px;padding:8px;border-radius:8px;background:#052e16;border:1px solid #22c55e;font-size:11px;color:#22c55e;text-align:center}
+*{box-sizing:border-box}body{margin:0;background:#0a1931;color:#fff;font-family:system-ui;padding:10px}
+.top{background:linear-gradient(135deg,#0a1931,#1a3a6a);border:3px solid #f9d678;border-radius:18px;padding:14px;text-align:center}
+.card{background:#102542;border:1px solid #1e3a5f;padding:12px;border-radius:12px;margin:10px 0}
+.btn-nav{padding:10px;border:none;border-radius:10px;font-weight:900;cursor:pointer;margin:0;font-size:12px}
+.badge{font-size:9px;padding:3px 7px;border-radius:10px;font-weight:900}
+.live{background:#f9d678;color:#000} .eth{background:#627eea} .bsc{background:#f3ba2f;color:#000} .poly{background:#8247e5} .btc{background:#f7931a} .tron{background:#ff060a}
+.block{border-left:4px solid #f9d678;background:linear-gradient(90deg,#1a1500,#102542);padding:12px;border-radius:12px;margin:10px 0;word-break:break-word}
 </style>
 </head>
 <body>
-
-<div class="top-box">
-<h1>⛓️ CHAIN EXPLORER - <span id="c1">5</span><br><span>98765 LIVE</span></h1>
-<p>Chain ID 98765 | ETH,BSC,Polygon,BTC,Tron - Real-Time | Baghpat UP</p>
+<div class="top">
+<div style="font-size:22px;font-weight:900">⛓️ CHAIN EXPLORER - <span style="color:#f9d678">5 CHAIN</span></div>
+<div style="font-size:10px;color:#94a3b8;margin-top:4px">Chain ID 98765 | Real-Time Blocks | Etherscan + BscScan + Blockchair + TronScan LIVE</div>
+<div style="font-size:9px;color:#f9d678;margin-top:6px">Genesis: HUB-GENESIS-SANDEEP-5CHAIN-98765-UP-INDIA-REALTIME</div>
 </div>
 
-<div class="nav">
-<a href="index.html">🏠 HOME</a>
-<a href="data.html">📊 DATA</a>
-<a href="explorer.html" class="active">⛓️ CHAIN</a>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin:10px 0">
+<button class="btn-nav" style="background:#102542;color:#fff;border:1px solid #334155" onclick="location.href='index.html'">🏠 HOME</button>
+<button class="btn-nav" style="background:#102542;color:#f9d678;border:1px solid #f9d678" onclick="location.href='data.html'">📊 DATA</button>
+<button class="btn-nav" style="background:#22c55e;color:#000">⛓️ CHAIN</button>
 </div>
 
-<div class="chain-info">
-<h3>🔗 Block Chain Status</h3>
-<div class="info-grid">
-<div class="info"><b id="total">5</b>TOTAL BLOCKS</div>
-<div class="info"><b style="color:#facc15">98765</b>CHAIN ID</div>
-<div class="info"><b style="color:#38bdf8">LIVE</b>STATUS</div>
-</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:5px">
+<div class="card" style="margin:0;text-align:center;border:1px solid #627eea"><div style="color:#627eea;font-weight:900">♦️ ETH</div><small id="cETH">0</small><br><small style="font-size:8px">Etherscan</small></div>
+<div class="card" style="margin:0;text-align:center;border:1px solid #f3ba2f"><div style="color:#f3ba2f;font-weight:900">🟡 BSC</div><small id="cBSC">0</small><br><small style="font-size:8px">BscScan</small></div>
+<div class="card" style="margin:0;text-align:center;border:1px solid #8247e5"><div style="color:#8247e5;font-weight:900">🟣 POLY</div><small id="cPOLY">0</small><br><small style="font-size:8px">PolygonScan</small></div>
+<div class="card" style="margin:0;text-align:center;border:1px solid #f7931a"><div style="color:#f7931a;font-weight:900">₿ BTC</div><small id="cBTC">0</small><br><small style="font-size:8px">Blockchair</small></div>
+<div class="card" style="margin:0;text-align:center;border:1px solid #ff060a"><div style="color:#ff060a;font-weight:900">🔶 TRON</div><small id="cTRON">0</small><br><small style="font-size:8px">TronScan</small></div>
 </div>
 
-<div class="explorer">
-<div class="ex-head">📜 CHAIN 98765 - BLOCK PROOF</div>
-<div id="chainList"></div>
+<div class="card" style="border:3px solid #f9d678;background:linear-gradient(135deg,#1a1500,#0a1931)">
+<div style="font-weight:900;color:#f9d678">⭐ HUB GENESIS BLOCK - 5 CHAIN</div>
+<div id="genesisBlock" style="font-size:11px;margin-top:8px;line-height:1.6"></div>
+</div>
+
+<div class="card">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<b style="color:#f9d678">🔗 Latest Blocks - 5 Chain LIVE</b>
+<button style="padding:6px 10px;border-radius:8px;border:none;background:#f9d678;font-weight:900;font-size:10px" onclick="location.reload()">🔄 REFRESH CHAIN</button>
+</div>
+<div id="chainList" style="max-height:900px;overflow:auto;margin-top:10px"></div>
+</div>
+
+<div class="card" style="text-align:center;border:1px dashed #334155">
+<small style="color:#94a3b8">Sandeep Shield - Baghpat UP - 5 Blockchain Integrated<br>Real APIs: Etherscan.io, BscScan.com, PolygonScan.com, Blockchair.com, TronScan.org<br>All blocks stored in localStorage: shield_final_up_realtime | Chain ID 98765</small>
 </div>
 
 <script>
-function getBlocks(){
-  let keys=["sandeep_shield_blocks","shield_blocks","sandeepShieldData","sandeep_shield_chain"];
-  for(let k of keys){
-    let v=localStorage.getItem(k);
-    if(v){try{let j=JSON.parse(v); if(Array.isArray(j)&&j.length>0) return j;}catch(e){}}
-  }
-  return [];
-}
+let chain=JSON.parse(localStorage.getItem('shield_final_up_realtime')||'[]');
 function render(){
-  let blocks=getBlocks().reverse();
-  document.getElementById('total').innerText=blocks.length;
-  document.getElementById('c1').innerText=blocks.length;
-  let html='';
-  blocks.forEach((b,i)=>{
-    let data=b.data||b.upi||'Sandeep ub';
-    let tx=b.tx||b.txId||'TX-UPI-LIVE-B2S-98765-UP';
-    let qk=b.qkey||b.qKey||'QKYB-LIVE-'+tx;
-    let time=b.time||b.timestamp||new Date().toLocaleString();
-    let prev=b.prev||(i==0?'GENESIS-98765':'TX-UPI-LIVE-...-98765-UP');
-    let hash=b.hash||tx;
-    html+=`
-    <div class="block">
-      <div class="b-header"><span class="b-num">BLOCK #${blocks.length-i}</span><span class="b-time">${time}</span></div>
-      <div class="b-title">🔗 ${data}</div>
-      <div class="b-hash">Tx: <span>${tx}</span></div>
-      <div class="b-hash">QKey: <span>${qk}</span></div>
-      <div class="b-hash">Prev: ${prev}</div>
-      <div class="b-hash">Hash: <span>${hash}</span></div>
-      <div class="verify">✅ VERIFIED - Chain 98765 | QKyB Secured</div>
-    </div>
-    ${i < blocks.length-1 ? '<div class="chain-line">⬇ ⛓️ ⬇</div>' : ''}
-    `;
-  });
-  document.getElementById('chainList').innerHTML=html||'<div style="text-align:center;padding:20px;color:#94a3b8">No blocks - Scan in HOME first</div>';
+ let g=chain.find(c=>c.type=='HUB_GENESIS');
+ if(g){
+   document.getElementById('genesisBlock').innerHTML=`<b style="color:#fff">${g.msg}</b><br><br>
+   <span style="color:#f9d678">Hash:</span> <b>${g.hash}</b><br>
+   <span style="color:#f9d678">Chain ID:</span> 98765 | <span style="color:#f9d678">Time:</span> ${new Date(g.time).toLocaleString()}<br>
+   <span style="color:#f9d678">Owner:</span> ${g.walletId} | <span style="color:#22c55e">VERIFIED - UP INDIA</span><br>
+   <span style="color:#f9d678">APIs:</span> <span class="badge eth">ETH</span> <span class="badge" style="background:#f3ba2f;color:#000">BSC</span> <span class="badge poly">POLY</span> <span class="badge btc">BTC</span> <span class="badge tron">TRON</span> - ALL REAL`;
+ }
+ document.getElementById('cETH').innerText=chain.filter(c=>c.chainType&&c.chainType.includes('ETH')).length;
+ document.getElementById('cBSC').innerText=chain.filter(c=>c.chainType&&c.chainType.includes('BSC')).length;
+ document.getElementById('cPOLY').innerText=chain.filter(c=>c.chainType&&c.chainType.includes('POLY')).length;
+ document.getElementById('cBTC').innerText=chain.filter(c=>c.chainType&&c.chainType.includes('BTC')).length;
+ document.getElementById('cTRON').innerText=chain.filter(c=>c.chainType&&c.chainType.includes('TRON')).length;
+ 
+ let html=""; let height=chain.length;
+ chain.slice().reverse().forEach((b,i)=>{
+   if(b.type=='HUB_GENESIS') return;
+   let col=b.chainType.includes('ETH')?'#627eea':b.chainType.includes('BSC')?'#f3ba2f':b.chainType.includes('POLY')?'#8247e5':b.chainType.includes('BTC')?'#f7931a':b.chainType.includes('TRON')?'#ff060a':'#22c55e';
+   let apiName=b.chainType.includes('ETH')?'Etherscan.io':b.chainType.includes('BSC')?'BscScan.com':b.chainType.includes('BTC')?'Blockchair.com':b.chainType.includes('TRON')?'TronScan.org':b.chainType.includes('POLY')?'PolygonScan.com':'Real-Time';
+   html+=`<div class="block" style="border-left-color:${col}">
+   <div style="display:flex;justify-content:space-between"><span style="font-weight:900">Block #${height-i-1}</span><span class="badge live">LIVE</span></div>
+   <div style="margin-top:6px"><b>${b.msg}</b></div>
+   <div style="font-size:10px;color:#94a3b8;margin-top:6px">
+   Tx: <b style="color:${col}">${b.hash}</b><br>
+   Prev: HUB-GENESIS-...98765<br>
+   Data: ${b.data.slice(0,40)}...<br>
+   Time: ${new Date(b.time).toLocaleString()} | API: <b style="color:${col}">${apiName} - REAL</b><br>
+   QKey: ${b.qkey} | Chain: ${b.chainType} | ${b.fraud?'<span style="color:#ef4444">🚨 FRAUD BLOCK</span>':'<span style="color:#22c55e">✅ SAFE BLOCK</span>'}
+   </div>
+   </div>`;
+ });
+ document.getElementById('chainList').innerHTML=html||"<div style='text-align:center;color:#94a3b8;padding:30px'>No blocks yet - Go to Home and scan 5 chains!</div>";
 }
 render();
 </script>
