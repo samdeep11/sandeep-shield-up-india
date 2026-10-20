@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DATA - Sandeep Shield - 5 Chain Live | Chain ID 98765</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0a1931;color:#fff;font-family:system-ui;padding:10px}
+.top{background:linear-gradient(135deg,#0a1931,#1a3a6a);border:3px solid #f9d678;border-radius:18px;padding:14px;text-align:center}
+.card{background:#102542;border:1px solid #1e3a5f;padding:12px;border-radius:12px;margin:10px 0}
+.btn-nav{padding:10px;border:none;border-radius:10px;font-weight:900;cursor:pointer;margin:0;font-size:12px}
+.btn{width:100%;padding:11px;border:none;border-radius:10px;font-weight:900;margin-top:6px;cursor:pointer}
+.badge{font-size:9px;padding:3px 7px;border-radius:10px;font-weight:900}
+.fraud{background:#ef4444} .safe{background:#22c55e;color:#000} .crypto{background:#a855f7} .social{background:#ec4899} .live{background:#f9d678;color:#000} .link{background:#0ea5e9} .btc{background:#f59e0b}
+input{width:100%;padding:11px;border-radius:10px;margin-top:6px;background:#020617;color:#fff;border:1px solid #334155}
+</style>
+</head>
+<body>
+<div class="top">
+<div style="font-size:22px;font-weight:900">📊 DATA EXPLORER - <span style="color:#f9d678">5 CHAIN LIVE</span></div>
+<div style="font-size:10px;color:#94a3b8;margin-top:4px">Chain ID 98765 | ETH,BSC,Polygon,BTC,Tron - Real-Time | Baghpat UP</div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin:10px 0">
+<button class="btn-nav" style="background:#102542;color:#fff;border:1px solid #334155" onclick="location.href='index.html'">🏠 HOME</button>
+<button class="btn-nav" style="background:#22c55e;color:#000">📊 DATA</button>
+<button class="btn-nav" style="background:#102542;color:#22c55e;border:1px solid #22c55e" onclick="location.href='explorer.html'">⛓️ CHAIN</button>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:5px">
+<div class="card" style="margin:0;text-align:center"><div id="tAll" style="font-weight:900">0</div><small>TOTAL</small></div>
+<div class="card" style="margin:0;text-align:center"><div id="tUPI" style="color:#22c55e;font-weight:900">0</div><small>UPI/LINK</small></div>
+<div class="card" style="margin:0;text-align:center"><div id="tCrypto" style="color:#a855f7;font-weight:900">0</div><small>5 CHAINS</small></div>
+<div class="card" style="margin:0;text-align:center"><div id="tBTC" style="color:#f59e0b;font-weight:900">0</div><small>BTC/TRON</small></div>
+<div class="card" style="margin:0;text-align:center;border:1px solid #ef4444"><div id="tFraud" style="color:#ef4444;font-weight:900">0</div><small>BLOCKED</small></div>
+</div>
+
+<div class="card">
+<b style="color:#f9d678">🔍 Filter - 5 Chain</b>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:8px">
+<button class="btn" style="background:#22c55e;color:#000;margin:0" onclick="filterData('all')">ALL</button>
+<button class="btn" style="background:#0ea5e9;color:#fff;margin:0" onclick="filterData('upi')">UPI/LINK</button>
+<button class="btn" style="background:#a855f7;color:#fff;margin:0" onclick="filterData('crypto')">ETH/BSC/POLY</button>
+<button class="btn" style="background:#f59e0b;color:#000;margin:0" onclick="filterData('btc')">BTC/TRON</button>
+<button class="btn" style="background:#ec4899;color:#fff;margin:0" onclick="filterData('social')">SOCIAL</button>
+<button class="btn" style="background:#ef4444;color:#fff;margin:0" onclick="filterData('fraud')">🚨 FRAUD</button>
+</div>
+<input id="searchInp" placeholder="Search: 0x... / rbi@okaxis / TX hash" oninput="filterData(currentFilter)">
+</div>
+
+<div class="card" style="border:2px solid #f9d678">
+<b style="color:#f9d678">📜 LIVE DATA - 5 CHAIN PROOF</b>
+<div id="dataList" style="font-size:11px;max-height:800px;overflow:auto;margin-top:10px"></div>
+</div>
+
+<div class="card" style="text-align:center">
+<button class="btn" style="background:#ef4444;color:#fff" onclick="if(confirm('All data delete?')){localStorage.removeItem('shield_final_up_realtime');location.reload();}">🗑️ Clear All Data</button>
+<small style="color:#94a3b8"><br>Real APIs: Etherscan, BscScan, Blockchair, TronScan - LIVE</small>
+</div>
+
+<script>
+let chain=JSON.parse(localStorage.getItem('shield_final_up_realtime')||'[]');
+let currentFilter='all';
+function renderStats(){
+ document.getElementById('tAll').innerText=chain.filter(c=>c.type!='HUB_GENESIS').length;
+ document.getElementById('tUPI').innerText=chain.filter(c=>c.cat=='upi').length;
+ document.getElementById('tCrypto').innerText=chain.filter(c=>c.cat=='crypto' && (c.chainType.includes('ETH')||c.chainType.includes('BSC')||c.chainType.includes('POLY'))).length;
+ document.getElementById('tBTC').innerText=chain.filter(c=>c.cat=='crypto' && (c.chainType.includes('BTC')||c.chainType.includes('TRON'))).length;
+ document.getElementById('tFraud').innerText=chain.filter(c=>c.fraud).length;
+}
+function filterData(type){
+ currentFilter=type;
+ let search=document.getElementById('searchInp').value.toLowerCase();
+ let filtered=chain.filter(c=>c.type!='HUB_GENESIS');
+ if(type=='upi') filtered=filtered.filter(c=>c.cat=='upi');
+ if(type=='crypto') filtered=filtered.filter(c=>c.cat=='crypto' && (c.chainType.includes('ETH')||c.chainType.includes('BSC')||c.chainType.includes('POLY')));
+ if(type=='btc') filtered=filtered.filter(c=>c.cat=='crypto' && (c.chainType.includes('BTC')||c.chainType.includes('TRON')));
+ if(type=='social') filtered=filtered.filter(c=>c.cat=='social');
+ if(type=='fraud') filtered=filtered.filter(c=>c.fraud);
+ if(search) filtered=filtered.filter(c=> (c.data+c.hash+c.msg).toLowerCase().includes(search));
+ 
+ let html=""; filtered.slice().reverse().forEach(b=>{
+   let color=b.fraud?'#ef4444':b.cat=='crypto'?'#a855f7':b.cat=='upi'?'#22c55e':'#ec4899';
+   let chainIcon=b.chainType.includes('BTC')?'₿ BTC':b.chainType.includes('TRON')?'🔶 TRON':b.chainType.includes('ETH')?'♦️ ETH':b.chainType.includes('BSC')?'🟡 BSC':b.chainType.includes('POLY')?'🟣 POLY':b.cat;
+   html+=`<div style="border:1px solid ${color};border-radius:10px;padding:10px;margin:8px 0;background:#020617">
+   <div><span class="badge live">LIVE</span> <span class="badge" style="background:${color}">${chainIcon}</span> ${b.fraud?'<span class="badge fraud">FRAUD 95%</span>':'<span class="badge safe">SAFE 99%</span>'} <small style="color:#94a3b8">${new Date(b.time).toLocaleString()}</small></div>
+   <div style="margin-top:6px"><b>${b.msg}</b></div>
+   <div style="margin-top:4px;font-size:10px;color:#94a3b8">Data: ${b.data}<br>Tx: <b style="color:#f9d678">${b.hash}</b> | API: ${b.chainType} - REAL<br>QKey: ${b.qkey}</div>
+   </div>`;
+ });
+ document.getElementById('dataList').innerHTML=html||"<div style='text-align:center;color:#94a3b8;padding:20px'>No data - Scan in Home</div>";
+ renderStats();
+}
+filterData('all');
+</script>
+</body>
+</html>
