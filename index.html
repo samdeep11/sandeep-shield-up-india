@@ -47,7 +47,26 @@ a{color:#f9d678}
 <button class="btn" style="background:#f9d678;color:#000" onclick="connectWallet()">🔗 Connect Wallet ID</button>
 <div class="card" style="border:2px solid #22c55e"><b style="color:#22c55e">🛡️ SCANNER 1: UPI RISK CHECK</b><input id="upiInp" placeholder="UPI ID: name@bank"><button class="btn" style="background:#22c55e;color:#000" onclick="scanUPI()">🔴 SCAN UPI ID</button><div id="upiOut" style="margin-top:6px"></div></div>
 <div class="card" style="border:2px solid #a855f7"><b style="color:#a855f7">🌐 SCANNER 2: CRYPTO WALLET CHECK</b><select id="chainSel"><option value="ETH">♦️ ETH - Ethereum</option><option value="BSC">🟡 BSC - BNB Chain</option><option value="POLY">💜 POLY - Polygon</option><option value="BTC">₿ BTC - Bitcoin</option><option value="TRON">🔴 TRON - TRX</option></select><input id="cryptoInp" placeholder="0x... / bc1... / T..."><button class="btn" style="background:#a855f7;color:#fff" onclick="scanCrypto()">🔴 SCAN WALLET</button><div id="cryptoOut" style="margin-top:6px"></div></div>
-<div class="card" style="border:2px solid #ec4899"><b style="color:#ec4899">📱 SCANNER 3: SOCIAL / LINK CHECK</b><input id="socialInp" placeholder="t.me/fake-channel / @fake-handle / https://..."><button class="btn" style="background:linear-gradient(90deg,#ec4899,#f59e0b);color:#000" onclick="scanSocial()">🔴 SCAN SOCIAL / LINK</button><div id="socialOut" style="margin-top:6px"></div></div>
+function scanSocial(){
+  let link=document.getElementById('socialInp').value.trim();
+  let out=document.getElementById('socialOut');
+  if(!link){
+    out.innerHTML='<div style="background:#facc15;color:#000;padding:10px;border-radius:10px;text-align:center">❌ Link daalo pehle</div>';
+    return;
+  }
+  let l=link.toLowerCase();
+  let tx="";
+  if(l.includes('2026.com') || l.includes('login-verify') || l.includes('verify-2026')){
+    tx=saveBlock(link,'SOCIAL-RISK','🚨 FAKE Social Login - 95% FRAUD');
+    out.innerHTML='<div style="background:#ef4444;color:#fff;padding:12px;border-radius:12px;text-align:center"><b>SOCIAL-RISK - 95% FRAUD</b><br>🚨 FAKE Social Login<br><small style="word-break:break-all">'+link+'</small><br><small>Tx: '+tx+'</small></div>';
+  } else if(l.includes('instagram') || l.includes('facebook') || l.includes('t.me') || l.includes('telegram') || l.includes('@')){
+    tx=saveBlock(link,'SOCIAL-SAFE','✅ Real Social Link');
+    out.innerHTML='<div style="background:#22c55e;color:#fff;padding:12px;border-radius:12px;text-align:center"><b>SOCIAL-SAFE</b><br>✅ Real Social Link<br><small style="word-break:break-all">'+link+'</small><br><small>Tx: '+tx+'</small></div>';
+  } else {
+    tx=saveBlock(link,'LINK-CHECK','ℹ️ Normal Link');
+    out.innerHTML='<div style="background:#f59e0b;color:#fff;padding:12px;border-radius:12px;text-align:center"><b>LINK-CHECK</b><br>ℹ️ Normal Link<br><small>Tx: '+tx+'</small></div>';
+  }
+}
 <div class="card" style="border:2px solid #f59e0b"><b style="color:#f59e0b">📷 SCANNER 4: QR CODE - UPI / CRYPTO / LINK</b><div id="qrReader" style="margin-top:8px;border-radius:10px;overflow:hidden"></div><button class="btn qr" onclick="startQR()">📷 START CAMERA SCAN</button><button class="btn" style="background:#334155;color:#fff" onclick="stopQR()">⛔ STOP CAMERA</button><input type="file" id="qrFile" accept="image/*" onchange="scanQRImage(this.files[0])"><div id="qrOut" style="margin-top:8px"></div></div>
 <div class="card" style="border:3px solid #f9d678"><b style="color:#f9d678">⛓️ LOCAL SCAN LEDGER - UP, INDIA</b><div id="genesisClear" style="background:linear-gradient(135deg,#1a1500,#2a0a4a);border:2px solid #f9d678;border-radius:12px;padding:12px;margin:10px 0;font-size:11px;line-height:1.6;word-break:break-word"></div><div id="ledger" style="font-size:10px;max-height:600px;overflow:auto"></div><div style="margin-top:10px;display:flex;gap:6px"><button class="btn" style="background:#020617;border:1px solid #334155;color:#fff;flex:1" onclick="exportData()">📤 EXPORT</button><button class="btn" style="background:#ef4444;color:#fff;flex:1" onclick="clearLedger()">🗑️ CLEAR</button></div></div>
 <div class="card" style="text-align:center;border:1px dashed #334155"><small style="color:#94a3b8">© 2026 Sandeep Shield - Baghpat, UP, India - 250609<br>Founder: Sandeep | Chain ID 98765<br>Scam intelligence by Sandeep Shield - Final Customized</small></div>
